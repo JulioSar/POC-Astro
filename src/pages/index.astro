@@ -2,8 +2,21 @@
 import Layout from "../layouts/Layout.astro";
 import { UsersAdmin } from "@/components/UsersAdmin/UsersAdmin";
 import "../../app/globals.css";
+import type { User } from "@/types";
+import { v4 } from "uuid";
+import Dashboard from "@/components/Dashboard/Dashboard.astro";
+const user : User={
+  id:v4(),
+  name:"Julio Sarmiento",
+  mail:"julio.sarmiento@apexfs.group",
+  status:true,
+  profile_picture:"https://avatars.git"
+}
 ---
 
-<Layout title="Welcome to Astro.">
-  <UsersAdmin client:load />
+<Layout title="Dashboard.">
+  <h1>Welcome back {user.name}.</h1>
+  <span>Please launch your app below.</span>
+  <Dashboard/>
+
 </Layout>

@@ -1,0 +1,9 @@
+---
+import Carousel from "./carousel";
+import News from "../../../MOCK_DATA_FEATURED_NEWS.json";
+---
+
+<section>
+  <h1 class="text-4xl my-10">Featured News</h1>
+  <Carousel items={News} client:load />
+</section>

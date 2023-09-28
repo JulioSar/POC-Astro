@@ -1,0 +1,43 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import Header from '../components/Header/Header.astro';
+import SideBar from '../components/SideBar/SideBar.tsx';
+
+
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <div class="grid grid-flow-col grid-cols-[18%_82%] grid-rows-[8vh_92vh] gap-0  ">
+      <section class="row-span-3">
+        <SideBar client:load />
+      </section>
+      <section class="col-span-2 shadow-2xl max-h-28 flex flex-col justify-center">
+        <Header />
+      </section>
+
+      <section class="row-span-2 col-span-2 mt-8">
+        <h1 class="text-2xl font-bold text-center mt-4">
+          {import.meta.env.VITE_APP_TITLE}
+        </h1>
+        <slot />
+      </section>
+    </div>
+  </body>
+</html>

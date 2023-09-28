@@ -1,0 +1,26 @@
+[
+  {
+    "id": "9409918e-d6c8-4c20-8f67-d758dd1b45e1",
+    "new_picture": "https://picsum.photos/800",
+    "title": "benchmark mission-critical action-items",
+    "content": "Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+    "date": "9/28/2022",
+    "category": "Research and Development"
+  },
+  {
+    "id": "1b00c2f6-5d5a-4455-8ab0-8724780858e4",
+    "new_picture": "https://picsum.photos/800",
+    "title": "recontextualize distributed bandwidth",
+    "content": "Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla.",
+    "date": "8/28/2023",
+    "category": "Services"
+  },
+  {
+    "id": "86351c3f-a435-4029-88c8-d4ed29378f1e",
+    "new_picture": "https://picsum.photos/800",
+    "title": "productize front-end e-business",
+    "content": "Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.",
+    "date": "3/31/2023",
+    "category": "Sales"
+  }
+]

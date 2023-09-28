@@ -1,0 +1,14 @@
+---
+import FeaturedNews from "./FeaturedNews.astro";
+import RegularNews from "./RegularNews.tsx";
+---
+<section class="flex flex-col gap-28">
+    <FeaturedNews />
+    <RegularNews client:load />
+    
+</section>
+
+
+
+
+

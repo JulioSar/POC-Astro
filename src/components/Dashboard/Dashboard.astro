@@ -1,0 +1,13 @@
+---
+import ActiveApps from "./ActiveApps.tsx";
+import News from "./News.astro";
+---
+<div class="flex flex-col gap-10 p-40">
+  <section>
+    <ActiveApps client:load />
+  </section>
+  <section>
+    <News />
+  </section>
+</div>
+
