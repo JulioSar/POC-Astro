@@ -94,10 +94,10 @@
     inset -4px -4px 12px #ffffff;
 }
 
-.orange-background {
-  background-color: #e87722 !important;
-}
-
 .light-dark-bg {
   background-color: rgb(16, 25, 41);
+}
+
+.stroke-w {
+  stroke-width: 30px;
 }

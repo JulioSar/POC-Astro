@@ -1,6 +1,8 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-import Header from "../components/Header/Header.astro";
+import SideBar from "@/components/SideBar/SideBar";
+import ContentAdmin from "@/components/SideBar/ContentAdmin.tsx"
+import ContentDashboard from "@/components/SideBar/ContentDashboard.astro"
 
 interface Props {
   title: string;
@@ -21,9 +23,17 @@ const { title } = Astro.props;
     <ViewTransitions />
   </head>
   <body>
-    <section class="col-span-2 shadow-2xl max-h-28 flex flex-col justify-center">
-      <Header />
+    <section class="grid grid-flow-col grid-cols-6 bg-gray-200">
+      <div class="col-span-1">
+      <SideBar client:load>
+        <ContentDashboard/>
+      </SideBar>
+    </div>
+    <div class="col-span-5">
+      <slot />
+
+    </div>
+
     </section>   
-     <slot />
   </body>
 </html>

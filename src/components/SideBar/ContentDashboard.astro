@@ -1,0 +1,28 @@
+---
+import { AiOutlineHome } from "react-icons/ai";
+import { HiOutlineNewspaper } from "react-icons/hi2";
+import { GoPerson, GoGear } from "react-icons/go";
+---
+
+<section class="mt-20 flex flex-col gap-5">
+  <div class="px-8 py-2 bg-[#E87722] text-white">
+    <a class="py-2 flex flex-row gap-4 text-lg font-light">
+      {(<AiOutlineHome className="mt-1 " />)} Dashboard
+    </a>
+  </div>
+  <div class="px-8">
+    <a class="py-2 flex flex-row gap-4 text-lg font-light">
+      {(<HiOutlineNewspaper className="mt-1" />)} News
+    </a>
+  </div>
+  <div class="px-8">
+    <a class="py-2 flex flex-row gap-4 text-lg font-light">
+      {(<GoPerson className="mt-1" />)} News
+    </a>
+  </div>
+  <div class="px-8">
+    <a class="py-2 flex flex-row gap-4 text-lg font-light" href="/admin">
+      {(<GoGear className="mt-1" />)} Admin
+    </a>
+  </div>
+</section>

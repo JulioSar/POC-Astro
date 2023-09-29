@@ -1,13 +1,25 @@
 ---
 import ActiveApps from "./ActiveApps.tsx";
 import News from "./News.astro";
+import UnactiveApps from "./UnactiveApps.tsx";
+const {user} = Astro.props;
+const userName = user.name.split(" ")[0];
+
+
 ---
-<div class="flex flex-col gap-10 p-40">
+<div class="flex flex-col gap-10 p-24 bg-gray-200">
+ 
+  <section>
+    <h1 class="text-4xl mb-5">Welcome back {userName}.</h1>
+    <span>Please launch your app below.</span>
+  </section>
   <section>
     <ActiveApps client:load />
   </section>
   <section>
     <News />
   </section>
+  <section>
+    <UnactiveApps client:load/>
+  </section>
 </div>
-

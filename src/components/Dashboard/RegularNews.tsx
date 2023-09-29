@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardFooter } from "../ui/card";
 import NewsRegular from "../../../MOCK_DATA_REGULAR_NEWS.json";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { News } from "@/types";
 
 export default function RegularNews() {

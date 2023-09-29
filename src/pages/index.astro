@@ -5,6 +5,8 @@ import "../../app/globals.css";
 import type { User } from "@/types";
 import { v4 } from "uuid";
 import Dashboard from "@/components/Dashboard/Dashboard.astro";
+import { Image } from "astro:assets";
+import ApexLogo from "../assets/ApexLogo_.png";
 const user : User={
   id:v4(),
   name:"Julio Sarmiento",
@@ -15,8 +17,8 @@ const user : User={
 ---
 
 <Layout title="Dashboard.">
-  <h1>Welcome back {user.name}.</h1>
-  <span>Please launch your app below.</span>
-  <Dashboard/>
-
+  <section class="justify-end align-middle items-end bg-gray-200 flex flex-col pr-10 pt-10">
+    <Image src={ApexLogo} alt="Apex Logo" class="mb-12 h-24 w-24 sm:h-20" />
+  </section>
+  <Dashboard user = {user}/>
 </Layout>
