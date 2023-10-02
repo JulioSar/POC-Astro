@@ -1,11 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import AvatarPic from "../../assets/avatar_pic.webp";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+
 import { AiOutlinePoweroff } from "react-icons/ai";
 import type { ReactNode } from "react";
 

@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import type { News } from "@/types";
 
-export default function Carousel({ items }: { items: News[] }) {
+export default function NewsCarousel({ items }: { items: News[] }) {
   const settings = {
     dots: true,
     infinite: true,

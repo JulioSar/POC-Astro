@@ -2,27 +2,30 @@
 import { useGetUsers, useDeleteUser } from "../../hooks/useUsers";
 import { TableAdmin } from "../Table/TableAdmin";
 import { columns } from "../Table/ColumnsTable";
-import { UsersModal } from "./UsersModal";
+import UsersModal from "./UsersModal";
 import { useState } from "react";
 import type { User } from "@/types";
 import { v4 as uuidv4 } from "uuid";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-
 export function UsersAdmin() {
   const { users, refresh, setRefresh } = useGetUsers();
-  const [modalVisible, setModalVisible] = useState(false);
   const [userClicked, setUserClicked] = useState<User>();
   const { toast } = useToast();
 
-  const showModal = () => {
-    setModalVisible(!modalVisible);
-  };
+  const [openModal, setOpenModal] = useState<string | undefined>();
 
+  function handleModalClose() {
+    setOpenModal(undefined);
+  }
+
+  function onRefresh() {
+    setRefresh(!refresh);
+  }
   const handleEditClick = (id: string) => {
     const userClickedHandler = users.find((user) => user.id === id);
-    setModalVisible(!modalVisible);
     setUserClicked(userClickedHandler);
+    setOpenModal("size");
   };
 
   const handleNewUserClick = () => {
@@ -33,8 +36,8 @@ export function UsersAdmin() {
       id: uuidv4(),
       profile_picture: "",
     };
-    setModalVisible(!modalVisible);
     setUserClicked(newUser);
+    setOpenModal("size");
   };
 
   const handleDeleteClick = async (id: string) => {
@@ -42,7 +45,7 @@ export function UsersAdmin() {
 
     const deleteUserResponse = await deleteUser(id);
     if (deleteUserResponse === 204) {
-      setRefresh(!refresh);
+      onRefresh();
       toast({
         title: "User deleted successfully",
         description: "The user data has been deleted from data base correctly.",
@@ -51,7 +54,7 @@ export function UsersAdmin() {
   };
 
   return (
-    <div className={`${modalVisible && "bg-sky-500/[.06]"} my-8`}>
+    <div>
       <section className="grid grid-cols-6 gap-4 w-full pr-10">
         <button
           onClick={handleNewUserClick}
@@ -65,15 +68,15 @@ export function UsersAdmin() {
         columns={columns({ handleEditClick, handleDeleteClick })}
         data={users}
       />
-
-      {modalVisible && userClicked && (
+      {userClicked && (
         <UsersModal
           user={userClicked}
-          showModal={showModal}
-          refresh={refresh}
-          setRefresh={setRefresh}
+          modalVisible={openModal}
+          closedModal={handleModalClose}
+          setRefresh={onRefresh}
         />
       )}
+
       <Toaster />
     </div>
   );

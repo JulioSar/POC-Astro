@@ -1,0 +1,28 @@
+name: 🫂 Continuous Integration
+
+on: pull_request
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: 👷🏽 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: 🏗️ Install Dependencies
+        run: make install
+
+      # - name: 🔦 Lint
+      #   run: make lint
+
+      - name: 🧪 Unit Testing
+        run: make test-unit
+
+      # - name: ⛙ Integration Testing
+      #   run: make test-int

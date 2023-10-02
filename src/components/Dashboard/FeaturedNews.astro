@@ -1,12 +1,12 @@
 ---
-import Carousel from "./carousel";
 import News from "../../../MOCK_DATA_FEATURED_NEWS.json";
+import NewsCarousel from "./NewsCarousel";
 ---
 
 <div class="border rounded-md p-10 bg-gray-100">
   <section>
     <h1 class="text-2xl mb-20">Featured News</h1>
-    <Carousel items={News} client:load />
+    <NewsCarousel items={News} client:load />
   </section>
   <section class="mt-12">
     <a class="cursor-pointer" href="google.com">Go to News</a>

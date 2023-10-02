@@ -1,3 +1,4 @@
+import { AiOutlineHome } from "react-icons/ai";
 import {
   Accordion,
   AccordionContent,
@@ -8,6 +9,11 @@ import {
 export default function ContentAdmin() {
   return (
     <section className=" mt-10">
+      <div className="px-8 py-2  text-black">
+        <a className="py-2 flex flex-row gap-4 text-md font-light" href="/">
+          {<AiOutlineHome className="mt-1 " />} Dashboard
+        </a>
+      </div>
       <Accordion type="single" collapsible className="px-8">
         <AccordionItem value="item-1">
           <AccordionTrigger className="text-md font-light">

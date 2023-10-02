@@ -10,25 +10,21 @@ import type { User } from "../../types";
 import { useToast } from "../ui/use-toast";
 
 interface UserContactProps {
-  userState: User;
+  userClicked: User;
   editName: boolean;
-  setUserState: Dispatch<SetStateAction<User>>;
-  refresh: boolean;
-  setRefresh: Dispatch<SetStateAction<boolean>>;
+  setRefresh: () => void;
   isNewUser: boolean;
 }
 
 export function UserContact({
-  userState,
+  userClicked,
   editName,
-  setUserState,
-  refresh,
   setRefresh,
   isNewUser,
 }: UserContactProps) {
-  const user = userState;
+  const [userState, setUserState] = useState<User>(userClicked);
   const { register, handleSubmit } = useForm<User>();
-  const [switchChecked, setSwitchChecked] = useState(user.status);
+  const [switchChecked, setSwitchChecked] = useState(userClicked.status);
   const { addData } = isNewUser ? useAddUser() : useUpdateUser();
   const { toast } = useToast();
 
@@ -48,7 +44,7 @@ export function UserContact({
   // Function to handle the call to custom hooks in order to save the data. Depends on bool to call add or update service
   const submitToast = (response: number) => {
     if (response === 200 || response === 201) {
-      setRefresh(!refresh);
+      setRefresh();
       toast({
         title: "Data added correctly",
         description: "The user data has been added to Data Base correctly.",
@@ -70,7 +66,7 @@ export function UserContact({
 
       <section className="grid grid-rows-1 grid-flow-row p-2 gap-10 shadow-sm w-full text-black mt-6">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid grid-cols-3 gap-4 ">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4 ">
             {editName && (
               <div className="grid w-full max-w-sm items-center gap-1.5 shadow-sm">
                 <Label htmlFor="name">Name</Label>
@@ -78,7 +74,7 @@ export function UserContact({
                   type="text"
                   id="name"
                   placeholder="Name"
-                  defaultValue={userState.name ? user.name : ""}
+                  defaultValue={userState.name ? userClicked.name : ""}
                   {...register("name")}
                 />
               </div>
@@ -89,7 +85,7 @@ export function UserContact({
                 type="email"
                 id="email"
                 placeholder="Email"
-                defaultValue={userState.mail ? user.mail : ""}
+                defaultValue={userState.mail ? userClicked.mail : ""}
                 {...register("mail", { required: true })}
                 className="border-none"
               />
@@ -136,9 +132,7 @@ export function UserContact({
             </div>
             <div className="flex items-center space-x-2 pt-5">
               <Switch
-                className={`${
-                  switchChecked ? "orange-background" : "bg-gray-500"
-                }`}
+                className={`${switchChecked ? "!bg-[#E87722]" : "bg-gray-500"}`}
                 id="user_status"
                 defaultChecked={switchChecked}
                 onCheckedChange={(checked) => {
@@ -158,7 +152,7 @@ export function UserContact({
       {/* Organization */}
       <section className="mt-12">
         <h2 className="text-xl">Applications</h2>
-        <div className="grid grid-cols-3 gap-6 p-2 mt-6">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-6 p-2 mt-6">
           <Card className="bg-gray-100 ">
             <CardHeader>
               <CardTitle>Agency Tools</CardTitle>

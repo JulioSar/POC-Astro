@@ -3,6 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import Applications from "../../../MOCK_DATA_APPS.json";
 import { useState } from "react";
+import type { ApplicationsInfo } from "@/types";
 
 export default function ActiveApps() {
   const [numToShow, setNumToShow] = useState(3);
@@ -13,8 +14,8 @@ export default function ActiveApps() {
     <>
       <section>
         <h2 className="text-2xl">Active Apps</h2>
-        <div className="grid lg:grid-cols-3 gap-6 mt-6 md:grid-cols-2 sm:grid-cols-1">
-          {Applications.slice(0, numToShow).map((app) => (
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-6 mt-6 ">
+          {Applications.slice(0, numToShow).map((app: ApplicationsInfo) => (
             <Card className="bg-gray-100  " key={app.id}>
               <CardHeader className="flex flex-row items-center gap-4">
                 <Avatar>

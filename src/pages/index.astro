@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { UsersAdmin } from "@/components/UsersAdmin/UsersAdmin";
 import "../../app/globals.css";
 import type { User } from "@/types";
 import { v4 } from "uuid";
@@ -17,7 +16,7 @@ const user : User={
 ---
 
 <Layout title="Dashboard.">
-  <section class="justify-end align-middle items-end bg-gray-200 flex flex-col pr-10 pt-10">
+  <section class="justify-end align-middle items-end bg-white flex flex-col pr-10 pt-10">
     <Image src={ApexLogo} alt="Apex Logo" class="mb-12 h-24 w-24 sm:h-20" />
   </section>
   <Dashboard user = {user}/>

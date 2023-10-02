@@ -1,31 +1,36 @@
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { type Dispatch, type SetStateAction, useState } from "react";
+import { useState } from "react";
 import type { User } from "../../types";
 import { UserContact } from "../UsersAdmin/UserContact";
 import UserAudit from "./UserAudit";
+import { Modal } from "flowbite-react";
 
 interface UsersModalProps {
   user: User;
-  showModal: () => void;
-  refresh: boolean;
-  setRefresh: Dispatch<SetStateAction<boolean>>;
+  modalVisible: string | undefined;
+  closedModal: () => void;
+  setRefresh: () => void;
 }
 
-export function UsersModal({
+export default function UsersModal({
   user,
-  showModal,
-  refresh,
   setRefresh,
+  modalVisible,
+  closedModal,
 }: UsersModalProps) {
   const isNewUser = Boolean(!user.name);
   const [editName, setEditName] = useState(isNewUser);
-  const [userState, setUserState] = useState<User>(user);
   const [tab, setTab] = useState("contact");
-
+  console.log(modalVisible);
   return (
-    <div className="fixed top-0 left-0 right-0 bottom-0 z-50 flex items-center justify-center transition-opacity duration-300 ease-in-ou opacity-100 bg-black/20 ">
-      <div className="bg-white dark:bg-slate-800 rounded-lg w-3/4 h-3/4 md:w-3/4 md:h-3/4 lg:w-3/4 lg:h-3/4 p-6 overflow-x-hidden overflow-y-auto max-h-full">
-        {/* Header */}
+    <Modal
+      dismissible
+      show={modalVisible === "size"}
+      size={"7xl"}
+      onClose={closedModal}
+    >
+      <Modal.Header />
+      <Modal.Body>
         <section className="grid gird-cols-6 gap-4 p-2">
           <div className="col-start-1 col-end-3 col-span-2 flex flex-row justify-start items-center gap-10">
             {isNewUser ? (
@@ -33,9 +38,9 @@ export function UsersModal({
             ) : (
               <Avatar className="w-24 h-24 text-3xl">
                 {/* .original is used to access the data value of the row */}
-                <AvatarImage src={userState.profile_picture} />
+                <AvatarImage src={user.profile_picture} />
                 <AvatarFallback>
-                  {userState.name
+                  {user.name
                     .split(" ")
                     .slice(0, 2)
                     .map((value) => value[0].toUpperCase())}
@@ -44,9 +49,7 @@ export function UsersModal({
             )}
 
             <div className="flex flex-col gap-2">
-              <h1 className="text-2xl">
-                {userState.name ? userState.name : ""}
-              </h1>
+              <h1 className="text-2xl">{user.name ? user.name : ""}</h1>
               {!isNewUser && (
                 <a
                   className="text-xs cursor-pointer"
@@ -57,16 +60,8 @@ export function UsersModal({
               )}
             </div>
           </div>
-          <div className="col-end-7 col-span-2 flex flex-row justify-end items-start relative left-24 bottom-24">
-            <button
-              onClick={showModal}
-              className=" text-black rounded-full p-2 flex flex-row-reverse m-20"
-            >
-              X
-            </button>
-          </div>
         </section>
-        <section className="">
+        <section>
           <div className="grid grid-cols-3 gap-10 mb-8 shadow-sm rounded-sm ">
             <button
               onClick={() => setTab("contact")}
@@ -98,10 +93,8 @@ export function UsersModal({
 
         {tab === "contact" ? (
           <UserContact
-            userState={userState}
+            userClicked={user}
             editName={editName}
-            setUserState={setUserState}
-            refresh={refresh}
             setRefresh={setRefresh}
             isNewUser={isNewUser}
           />
@@ -110,7 +103,7 @@ export function UsersModal({
         ) : (
           tab === "audit" && <UserAudit />
         )}
-      </div>
-    </div>
+      </Modal.Body>
+    </Modal>
   );
 }

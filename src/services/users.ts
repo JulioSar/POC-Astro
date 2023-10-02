@@ -1,12 +1,9 @@
 import type { User } from "../types";
 import axios from "axios";
-const apiUrl = import.meta.env.PUBLIC_API_URL;
-console.log(apiUrl);
 
 export async function fetchDataUser() {
   try {
     const response = await axios.get(`${import.meta.env.PUBLIC_API_URL}/user`);
-    console.log(response);
     return response.data;
   } catch (error) {
     console.log(error);

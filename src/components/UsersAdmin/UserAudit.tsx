@@ -1,11 +1,11 @@
-/* eslint-disable @typescript-eslint/indent */
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 export default function UserAudit() {
   const currentTime = new Date().toLocaleString();
   return (
     <section className="mt-12">
-      <div className="grid grid-cols-3 gap-6 p-2 mt-6">
+      <h2>Users Actions</h2>
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-6 p-2 mt-6">
         <Card className="bg-gray-100 ">
           <CardHeader>
             <CardTitle>Deploy Application</CardTitle>
