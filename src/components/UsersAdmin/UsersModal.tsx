@@ -21,7 +21,6 @@ export default function UsersModal({
   const isNewUser = Boolean(!user.name);
   const [editName, setEditName] = useState(isNewUser);
   const [tab, setTab] = useState("contact");
-  console.log(modalVisible);
   return (
     <Modal
       dismissible

@@ -8,6 +8,7 @@ import { useState, type Dispatch, type SetStateAction } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import type { User } from "../../types";
 import { useToast } from "../ui/use-toast";
+import BaseError from "@/errors/base-error";
 
 interface UserContactProps {
   userClicked: User;
@@ -27,6 +28,10 @@ export function UserContact({
   const [switchChecked, setSwitchChecked] = useState(userClicked.status);
   const { addData } = isNewUser ? useAddUser() : useUpdateUser();
   const { toast } = useToast();
+  const toastInfo = {
+    title: "",
+    description: "",
+  };
 
   // Submit handler. It takes all the new data and set it to the state
   const onSubmit: SubmitHandler<User> = async (data) => {
@@ -38,32 +43,26 @@ export function UserContact({
       status: switchChecked,
     };
     setUserState(newData);
-    const response = await addData(newData);
-    submitToast(response);
-  };
-  // Function to handle the call to custom hooks in order to save the data. Depends on bool to call add or update service
-  const submitToast = (response: number) => {
-    if (response === 200 || response === 201) {
+    try {
+      await addData(newData);
       setRefresh();
-      toast({
-        title: "Data added correctly",
-        description: "The user data has been added to Data Base correctly.",
-      });
-    } else {
-      toast({
-        title: "Unable to add user data",
-        description:
-          "There has been an error while saving new data. Please try again.",
-      });
+      toastInfo.title = "Data added correctly";
+      toastInfo.description =
+        "The user data has been added to Data Base correctly.";
+    } catch (error) {
+      toastInfo.description = "The user data has not been added to Data Base.";
+      if (error instanceof BaseError) {
+        toastInfo.description = error.message;
+      }
+      toastInfo.title = "Unable to add user data";
     }
+    toast(toastInfo);
   };
-  // Calling the service handler function inside an useEffect that is accessible only if state submitClicked is true
 
   return (
     <>
       {/* Contact Information */}
       <h2 className=" text-xl p-2">Contact Information</h2>
-
       <section className="grid grid-rows-1 grid-flow-row p-2 gap-10 shadow-sm w-full text-black mt-6">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4 ">

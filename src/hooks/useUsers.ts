@@ -39,12 +39,7 @@ export function useGetUsers() {
 
 export function useUpdateUser() {
   const addData = async (user: User) => {
-    try {
-      const response = await updateUser(user);
-      return response.data.code;
-    } catch (error) {
-      console.log(error);
-    }
+    await updateUser(user);
   };
 
   return { addData };
@@ -53,8 +48,7 @@ export function useUpdateUser() {
 export function useAddUser() {
   const addData = async (user: User) => {
     try {
-      const responseAdd = await addUserData(user);
-      return responseAdd.data.code;
+      await addUserData(user);
     } catch (error) {
       console.log(error);
       return error;
@@ -66,8 +60,7 @@ export function useAddUser() {
 export function useDeleteUser() {
   const deleteUser = async (id: string) => {
     try {
-      const response = await deleteUserService(id);
-      return response.status;
+      await deleteUserService(id);
     } catch (error) {
       console.log(error);
       return error;

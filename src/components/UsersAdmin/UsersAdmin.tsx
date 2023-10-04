@@ -8,12 +8,16 @@ import type { User } from "@/types";
 import { v4 as uuidv4 } from "uuid";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
+
 export function UsersAdmin() {
   const { users, refresh, setRefresh } = useGetUsers();
   const [userClicked, setUserClicked] = useState<User>();
   const { toast } = useToast();
-
   const [openModal, setOpenModal] = useState<string | undefined>();
+  const toastInfo = {
+    title: "",
+    description: "",
+  };
 
   function handleModalClose() {
     setOpenModal(undefined);
@@ -43,14 +47,17 @@ export function UsersAdmin() {
   const handleDeleteClick = async (id: string) => {
     const { deleteUser } = useDeleteUser();
 
-    const deleteUserResponse = await deleteUser(id);
-    if (deleteUserResponse === 204) {
+    try {
+      await deleteUser(id);
       onRefresh();
-      toast({
-        title: "User deleted successfully",
-        description: "The user data has been deleted from data base correctly.",
-      });
+      toastInfo.title = "User deleted successfully";
+      toastInfo.description =
+        "The user data has been deleted from data base correctly.";
+    } catch (error) {
+      toastInfo.title = "Unable to delete user data";
+      toastInfo.description = `There has been an error while deleting data. Please try again.${error}`;
     }
+    toast(toastInfo);
   };
 
   return (
