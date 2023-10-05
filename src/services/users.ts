@@ -48,7 +48,6 @@ export async function updateUser(user: User) {
       if (error.response) {
         // The request was made and the server responded with a status code
         if (error.response.status == 404) {
-          console.log(error.message);
           throw new NotFoundException(
             `The user with id ${user.id} has not been found`
           );

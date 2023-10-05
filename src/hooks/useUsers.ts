@@ -47,24 +47,14 @@ export function useUpdateUser() {
 
 export function useAddUser() {
   const addData = async (user: User) => {
-    try {
-      await addUserData(user);
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
+    await addUserData(user);
   };
   return { addData };
 }
 
 export function useDeleteUser() {
   const deleteUser = async (id: string) => {
-    try {
-      await deleteUserService(id);
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
+    await deleteUserService(id);
   };
   return { deleteUser };
 }

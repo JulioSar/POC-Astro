@@ -83,8 +83,6 @@ describe("HTTP Test", () => {
     // given
     server.use(failUpdateUserMock);
 
-    // when
-
     // then
     await expect(() => updateUser(user)).rejects.toThrowError();
   });

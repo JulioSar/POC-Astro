@@ -66,14 +66,14 @@ export function UsersAdmin() {
         <button
           onClick={handleNewUserClick}
           className="p-2 button-add col-start-7 col-span-2 text-white dark:shadow-none"
+          name="add-user"
         >
           Add New User
         </button>
       </section>
-
       <TableAdmin
         columns={columns({ handleEditClick, handleDeleteClick })}
-        data={users}
+        data={users ? users : []}
       />
       {userClicked && (
         <UsersModal
