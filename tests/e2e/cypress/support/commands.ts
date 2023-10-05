@@ -23,3 +23,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+/// <reference types="@testing-library/cypress" />
+/// <reference types="cypress" />
+
+import "@testing-library/cypress/add-commands";

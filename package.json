@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest --ui",
-    "cypress:open": "cypress open"
+    "cypress:open": "CYPRESS_BASE_URL=http://localhost:4321 cypress open"
   },
   "dependencies": {
     "@astrojs/react": "^3.0.2",

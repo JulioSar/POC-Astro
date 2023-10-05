@@ -1,4 +1,3 @@
-import "@testing-library/cypress/add-commands";
 import * as preprocessor from "@badeball/cypress-cucumber-preprocessor";
 const { Given, Then, When } = preprocessor;
 
