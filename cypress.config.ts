@@ -7,7 +7,7 @@ export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:3000",
     retries: 2,
-    specPattern: "tests/e2e/cypress/e2e/**/*.{js,jsx,ts,tsx,feature}",
+    specPattern: "tests/e2e/cypress/e2e/**/*.feature",
     supportFile: "tests/e2e/cypress/support/e2e.ts",
 
     async setupNodeEvents(

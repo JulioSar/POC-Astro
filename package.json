@@ -10,7 +10,7 @@
     "astro": "astro",
     "test:unit": "vitest --ui --dir tests/unit-test",
     "test:int": "vitest --ui --dir tests/integration-test",
-    "test:e2e": "CYPRESS_BASE_URL=http://localhost:4321 cypress open"
+    "test:e2e": "CYPRESS_BASE_URL=http://localhost:4321 cypress run"
   },
   "dependencies": {
     "@astrojs/react": "^3.0.2",
