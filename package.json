@@ -8,8 +8,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "vitest --ui",
-    "cypress:open": "CYPRESS_BASE_URL=http://localhost:4321 cypress open"
+    "test:unit": "vitest --ui --dir tests/unit-test",
+    "test:int": "vitest --ui --dir tests/integration-test",
+    "test:e2e": "CYPRESS_BASE_URL=http://localhost:4321 cypress open"
   },
   "dependencies": {
     "@astrojs/react": "^3.0.2",
