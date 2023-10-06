@@ -1,12 +1,12 @@
 NPM_BIN := $(shell which npm)
 
-.PHONY: test-unit
-test-unit:
-    @$(NPM_BIN) run test:unit -- --mode test
-
 .PHONY: install
 install:
     @$(NPM_BIN) install
+
+.PHONY: test-unit
+test-unit:
+    @$(NPM_BIN) run test:unit -- --mode test
 
 .PHONY: test-int
 test-integration:
