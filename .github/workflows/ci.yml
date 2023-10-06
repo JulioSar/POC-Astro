@@ -27,5 +27,5 @@ jobs:
       - name: ⛙ Integration Testing
         run: make test-int
 
-      - name: Unit Testing
+      - name: E2E Testing
         run: make test-e2e
