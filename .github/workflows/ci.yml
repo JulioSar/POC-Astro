@@ -28,6 +28,8 @@ jobs:
         run: make test-int
 
       - name: E2E Testing
+        env:
+          PUBLIC_API_URL: ${{ secrets.PUBLIC_API_URL }}
         uses: cypress-io/github-action@v6
         with:
           start: npm run start
