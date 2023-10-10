@@ -14,7 +14,4 @@ test-int:
 
 .PHONY: run
 run:
-	@$(NPM_BIN) run dev
-.PHONY: test-e2e
-test-e2e:
-	@$(NPM_BIN) run test:e2e
+	@$(NPM_BIN) run start

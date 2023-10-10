@@ -31,4 +31,7 @@ jobs:
         run: make run
 
       - name: E2E Testing
-        run: make test-e2e
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run start
+          wait-on: "http://localhost:4321"
