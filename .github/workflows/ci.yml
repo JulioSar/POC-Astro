@@ -32,3 +32,4 @@ jobs:
         with:
           start: npm run start
           wait-on: "http://localhost:4321"
+          config: baseUrl=http://localhost:4321
