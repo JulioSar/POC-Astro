@@ -6,17 +6,19 @@ import { useState } from "react";
 import type { ApplicationsInfo } from "@/types";
 
 export default function ActiveApps() {
-  const [numToShow, setNumToShow] = useState(3);
+  const [numToShow, setNumToShow] = useState(4);
   const handleMore = () => {
-    setNumToShow(numToShow + 3);
+    setNumToShow(Applications.length);
   };
+  const appsToShow = Applications.slice(0, numToShow);
+  console.log(appsToShow);
   return (
     <>
-      <section>
+      <section className="border rounded-md p-10 bg-gray-100">
         <h2 className="text-2xl">Active Apps</h2>
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-6 mt-6 ">
-          {Applications.slice(0, numToShow).map((app: ApplicationsInfo) => (
-            <Card className="bg-gray-100  " key={app.id}>
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-6 mt-6 ">
+          {appsToShow.map((app: ApplicationsInfo) => (
+            <Card className="bg-white" key={app.id}>
               <CardHeader className="flex flex-row items-center gap-4">
                 <Avatar>
                   <AvatarImage src={app.application_image} />
