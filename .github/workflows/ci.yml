@@ -27,9 +27,6 @@ jobs:
       - name: ⛙ Integration Testing
         run: make test-int
 
-      - name: Run App
-        run: make run
-
       - name: E2E Testing
         uses: cypress-io/github-action@v6
         with:

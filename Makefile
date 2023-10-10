@@ -12,6 +12,3 @@ test-unit:
 test-int:
 	@$(NPM_BIN) run test:int -- --mode test
 
-.PHONY: run
-run:
-	@$(NPM_BIN) run start
