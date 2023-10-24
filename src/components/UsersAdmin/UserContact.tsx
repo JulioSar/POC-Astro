@@ -144,7 +144,7 @@ export function UserContact({
           <input
             type="submit"
             value="Submit"
-            className="button-add mt-8 text-white shadow-gray-400 cursor-pointer"
+            className="button-orange-apex mt-8 shadow-gray-400 cursor-pointer"
           />
         </form>
       </section>

@@ -65,7 +65,7 @@ export function UsersAdmin() {
       <section className="grid grid-cols-6 gap-4 w-full pr-10">
         <button
           onClick={handleNewUserClick}
-          className="p-2 button-add col-start-7 col-span-2 text-white dark:shadow-none"
+          className="p-2 button-orange-apex col-start-7 col-span-2 dark:shadow-none"
           name="add-user"
         >
           Add New User

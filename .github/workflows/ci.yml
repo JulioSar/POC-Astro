@@ -26,7 +26,7 @@ jobs:
 
       - name: ⛙ Integration Testing
         run: make test-int
-
+      #Try to do npm run and npm run test:e2e
       - name: E2E Testing
         env:
           PUBLIC_API_URL: ${{ secrets.PUBLIC_API_URL }}

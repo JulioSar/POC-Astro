@@ -75,29 +75,32 @@
   }
 }
 
-.button-add {
-  padding: 0.7em 1.7em;
-  font-size: 14px;
-  border-radius: 0.5em;
-  background: #e87722 !important;
-  border: 1px solid #e87722;
-  transition: all 0.3s;
-  box-shadow:
-    6px 6px 12px #c5c5c5,
-    -6px -6px 12px #ffffff;
-}
+@layer components {
+  .button-orange-apex {
+    padding: 0.7em 1.7em;
+    font-size: 14px;
+    border-radius: 0.5em;
+    background: #e87722 !important;
+    border: 1px solid #e87722;
+    transition: all 0.3s;
+    color: white;
+    box-shadow:
+      6px 6px 12px #c5c5c5,
+      -6px -6px 12px #ffffff;
+  }
 
-.button-add:active {
-  color: #666;
-  box-shadow:
-    inset 4px 4px 12px #c5c5c5,
-    inset -4px -4px 12px #ffffff;
-}
+  .button-orange-apex:active {
+    color: #666;
+    box-shadow:
+      inset 4px 4px 12px #c5c5c5,
+      inset -4px -4px 12px #ffffff;
+  }
 
-.light-dark-bg {
-  background-color: rgb(16, 25, 41);
-}
+  .light-dark-bg {
+    background-color: rgb(16, 25, 41);
+  }
 
-.stroke-w {
-  stroke-width: 30px;
+  .stroke-w {
+    stroke-width: 30px;
+  }
 }
