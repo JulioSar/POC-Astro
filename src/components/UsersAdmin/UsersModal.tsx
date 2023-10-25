@@ -1,32 +1,47 @@
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useState } from "react";
-import type { User } from "../../types";
 import { UserContact } from "../UsersAdmin/UserContact";
 import UserAudit from "./UserAudit";
 import { Modal } from "flowbite-react";
+import { useGetSingleUser } from "@/hooks/useUsers";
+import { NewUser } from "./Entities/new-user";
 
 interface UsersModalProps {
-  user: User;
-  modalVisible: string | undefined;
-  closedModal: () => void;
+  userProps: {
+    userId: string;
+    setUserId: (value: string) => void;
+  };
   setRefresh: () => void;
+  modalProps: {
+    openModal: string | undefined;
+    setOpenModal: (value: string | undefined) => void;
+  };
 }
 
 export default function UsersModal({
-  user,
+  userProps,
   setRefresh,
-  modalVisible,
-  closedModal,
+  modalProps,
 }: UsersModalProps) {
-  const isNewUser = Boolean(!user.name);
+  const userId = userProps.userId;
+  const isNewUser = userId === "";
+  console.log("isNewUser", isNewUser);
+  const user = !isNewUser ? useGetSingleUser(userId) : new NewUser();
+
   const [editName, setEditName] = useState(isNewUser);
   const [tab, setTab] = useState("contact");
+
+  function handleModalClose() {
+    modalProps.setOpenModal(undefined);
+    userProps.setUserId("");
+  }
+
   return (
     <Modal
       dismissible
-      show={modalVisible === "size"}
+      show={modalProps.openModal === "size"}
       size={"7xl"}
-      onClose={closedModal}
+      onClose={handleModalClose}
     >
       <Modal.Header />
       <Modal.Body>
@@ -37,9 +52,9 @@ export default function UsersModal({
             ) : (
               <Avatar className="w-24 h-24 text-3xl">
                 {/* .original is used to access the data value of the row */}
-                <AvatarImage src={user.profile_picture} />
+                <AvatarImage src={user?.profile_picture} />
                 <AvatarFallback>
-                  {user.name
+                  {user?.name
                     .split(" ")
                     .slice(0, 2)
                     .map((value) => value[0].toUpperCase())}
@@ -48,7 +63,7 @@ export default function UsersModal({
             )}
 
             <div className="flex flex-col gap-2">
-              <h1 className="text-2xl">{user.name ? user.name : ""}</h1>
+              <h1 className="text-2xl">{user?.name ? user.name : ""}</h1>
               {!isNewUser && (
                 <a
                   className="text-xs cursor-pointer"
@@ -91,12 +106,14 @@ export default function UsersModal({
         </section>
 
         {tab === "contact" ? (
-          <UserContact
-            userClicked={user}
-            editName={editName}
-            setRefresh={setRefresh}
-            isNewUser={isNewUser}
-          />
+          user && (
+            <UserContact
+              userClicked={user}
+              editName={editName}
+              setRefresh={setRefresh}
+              isNewUser={isNewUser}
+            />
+          )
         ) : tab === "organization" ? (
           <h1>Chart goes here</h1>
         ) : (

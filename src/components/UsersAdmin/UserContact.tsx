@@ -73,7 +73,7 @@ export function UserContact({
                   type="text"
                   id="name"
                   placeholder="Name"
-                  defaultValue={userState.name ? userClicked.name : ""}
+                  defaultValue={userState.name}
                   {...register("name")}
                 />
               </div>
@@ -84,7 +84,7 @@ export function UserContact({
                 type="email"
                 id="email"
                 placeholder="Email"
-                defaultValue={userState.mail ? userClicked.mail : ""}
+                defaultValue={userState.mail}
                 {...register("mail", { required: true })}
                 className="border-none"
               />
