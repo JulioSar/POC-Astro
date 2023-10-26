@@ -8,20 +8,20 @@ import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 
 export function UsersAdmin() {
-  const { users, refresh, setRefresh } = useGetUsers();
+  const [index, setIndex] = useState<number>(0);
+  const [pageSize, setPageSize] = useState<number>(10);
+  const { users, total } = useGetUsers(pageSize, index);
   const [userId, setUserId] = useState<string>("");
   const [openModal, setOpenModal] = useState<string | undefined>();
   const modalProps = { openModal, setOpenModal };
   const userProps = { userId, setUserId };
   const { toast } = useToast();
+  const indexProps = { index, setIndex };
   const toastInfo = {
     title: "",
     description: "",
   };
 
-  function onRefresh() {
-    setRefresh(!refresh);
-  }
   const handleEditClick = (id: string) => {
     setUserId(id);
     setOpenModal("size");
@@ -36,7 +36,6 @@ export function UsersAdmin() {
 
     try {
       await deleteUser(id);
-      onRefresh();
       toastInfo.title = "User deleted successfully";
       toastInfo.description =
         "The user data has been deleted from data base correctly.";
@@ -61,13 +60,12 @@ export function UsersAdmin() {
       <TableAdmin
         columns={columns({ handleEditClick, handleDeleteClick })}
         data={users ? users : []}
+        totalPages={total}
+        indexProps={indexProps}
+        setPageSize={setPageSize}
       />
       {openModal && (
-        <UsersModal
-          userProps={userProps}
-          setRefresh={onRefresh}
-          modalProps={modalProps}
-        />
+        <UsersModal userProps={userProps} modalProps={modalProps} />
       )}
 
       <Toaster />

@@ -9,60 +9,50 @@ import {
 import type { User } from "../types";
 import { useEffect, useState } from "react";
 
-// async function mockFetchDataUsersHook() {
-//   const response = await mockFetchDataUsers(); // Add await once the API is ready
+async function mockFetchDataUsersHook(pageSize: number, pageIndex?: number) {
+  const items = await mockFetchDataUsers(pageSize, pageIndex);
+  const users = items.items;
+  const total = items.totalCount; // Add await once the API is ready
 
-//   const mappedUsers = response.map((user: User) => ({
-//     id: user.id,
-//     name: user.name,
-//     mail: user.mail,
-//     status: user.status,
-//   }));
-//   return response;
-// }
+  return { users, total };
+}
 
 // Mapping the data from the API to the correct format
 async function useUsers() {
-  const users = await fetchDataUser(); // Add await once the API is ready
+  const usersFetch = await fetchDataUser(); //
+  const users = usersFetch.data;
 
-  // users.data.map
-  const mappedUsers = users?.data?.map((user: User) => ({
-    id: user.id,
-    name: user.name,
-    mail: user.mail,
-    status: user.status,
-    profile_picture: user.profile_picture,
-  }));
-
-  return { usersMapped: mappedUsers };
+  return { users };
 }
 
 async function fetchSingleUser(id: string) {
-  const user = await fetchSingleUserData(id); // Add await once the API is ready
-  // users.data.map
-  const mappedUser = {
-    id: user.data.id,
-    name: user.data.name,
-    mail: user.data.mail,
-    status: user.data.status,
-    profile_picture: user.data.profile_picture,
-  };
-
-  return { userMapped: mappedUser };
+  const userFetch = await fetchSingleUserData(id); // Add await once the API is ready
+  const user = userFetch.data;
+  return { user };
 }
 
 // Hook to get the users
-export function useGetUsers() {
+export function useGetUsers(pageSize: number, pageIndex?: number) {
   const [users, setUsers] = useState<User[]>([]);
-  const [refresh, setRefresh] = useState(false);
+  const [total, setTotal] = useState<number>(0);
   useEffect(() => {
-    const fetchUsers = async () => {
-      const { usersMapped } = await useUsers();
-      setUsers(usersMapped);
-    };
+    async function fetchUsers() {
+      const { users, total } = await mockFetchDataUsersHook(
+        pageSize,
+        pageIndex
+      );
+      const formattedUsers = users.map((user) => ({
+        ...user,
+        profile_picture: undefined, // add the missing property with a default value
+      }));
+      setUsers(formattedUsers);
+      setTotal(total);
+    }
+
     fetchUsers();
-  }, [refresh]);
-  return { users, refresh, setRefresh };
+  }, [pageIndex, pageSize]);
+
+  return { users, total };
 }
 
 export function useGetSingleUser(id: string) {
@@ -70,8 +60,8 @@ export function useGetSingleUser(id: string) {
 
   useEffect(() => {
     async function fetchUserData() {
-      const { userMapped } = await fetchSingleUser(id);
-      setUser(userMapped);
+      const { user } = await fetchSingleUser(id);
+      setUser(user);
     }
 
     fetchUserData();

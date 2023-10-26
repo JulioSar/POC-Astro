@@ -4,9 +4,14 @@ import NotFoundException from "@/errors/not-found-exception-error";
 import NetworkError from "@/errors/network-error";
 import Users from "../../MOCK_DATA_PAGINATION.json";
 
-export async function mockFetchDataUsers() {
-  const response = Users;
-  return response.items;
+export async function mockFetchDataUsers(pageSize: number, pageIndex?: number) {
+  const startIndex = pageIndex ? pageIndex * pageSize : 0;
+  const endIndex = startIndex + pageSize;
+  const total = Math.ceil(Users.totalCount / pageSize);
+  return {
+    items: Users.items.slice(startIndex, endIndex),
+    totalCount: total,
+  };
 }
 
 export async function fetchDataUser() {

@@ -13,14 +13,12 @@ import BaseError from "@/errors/base-error";
 interface UserContactProps {
   userClicked: User;
   editName: boolean;
-  setRefresh: () => void;
   isNewUser: boolean;
 }
 
 export function UserContact({
   userClicked,
   editName,
-  setRefresh,
   isNewUser,
 }: UserContactProps) {
   const [userState, setUserState] = useState<User>(userClicked);
@@ -45,7 +43,6 @@ export function UserContact({
     setUserState(newData);
     try {
       await addData(newData);
-      setRefresh();
       toastInfo.title = "Data added correctly";
       toastInfo.description =
         "The user data has been added to Data Base correctly.";

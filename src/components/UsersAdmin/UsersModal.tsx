@@ -11,18 +11,13 @@ interface UsersModalProps {
     userId: string;
     setUserId: (value: string) => void;
   };
-  setRefresh: () => void;
   modalProps: {
     openModal: string | undefined;
     setOpenModal: (value: string | undefined) => void;
   };
 }
 
-export default function UsersModal({
-  userProps,
-  setRefresh,
-  modalProps,
-}: UsersModalProps) {
+export default function UsersModal({ userProps, modalProps }: UsersModalProps) {
   const userId = userProps.userId;
   const isNewUser = userId === "";
   console.log("isNewUser", isNewUser);
@@ -110,7 +105,6 @@ export default function UsersModal({
             <UserContact
               userClicked={user}
               editName={editName}
-              setRefresh={setRefresh}
               isNewUser={isNewUser}
             />
           )

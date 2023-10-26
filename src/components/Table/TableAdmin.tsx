@@ -32,11 +32,17 @@ import { useState } from "react";
 interface DataTableProps<TData, TValue> {
   columns: Array<ColumnDef<TData, TValue>>;
   data: TData[];
+  totalPages: number;
+  indexProps: { index: number; setIndex: (index: number) => void };
+  setPageSize: (pageSize: number) => void;
 }
 
 export function TableAdmin<TData, TValue>({
   columns,
   data,
+  totalPages,
+  indexProps,
+  setPageSize,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -151,8 +157,14 @@ export function TableAdmin<TData, TValue>({
         </Table>
       </div>
       {/* Pagination buttons */}
-
-      <DataTablePagination table={table} />
+      <div className="p-4">
+        <DataTablePagination
+          table={table}
+          totalPages={totalPages}
+          indexProps={indexProps}
+          setPageSize={setPageSize}
+        />
+      </div>
     </div>
   );
 }
