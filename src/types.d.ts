@@ -24,3 +24,17 @@ export interface ApplicationsInfo {
   application_contact_email: string;
   application_link: string[];
 }
+
+export interface paginateProps {
+  data: {
+    totalCount: number;
+    items: {
+      id: string;
+      mail: string;
+      name: string;
+      status: boolean;
+    }[];
+  };
+  pageSize: number;
+  pageIndex?: number;
+}

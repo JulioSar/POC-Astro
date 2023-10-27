@@ -8,21 +8,21 @@ import {
 } from "@/services/users";
 import type { User } from "../types";
 import { useEffect, useState } from "react";
+import userService from "@/services/users2";
+import { usePagination } from "@/hooks/usePagination";
 
 async function mockFetchDataUsersHook(pageSize: number, pageIndex?: number) {
-  const items = await mockFetchDataUsers(pageSize, pageIndex);
-  const users = items.items;
-  const total = items.totalCount; // Add await once the API is ready
+  const usersFetch = await userService.getAll();
+  const { items, totalCount } = await usePagination({
+    data: {
+      totalCount: usersFetch.length,
+      items: usersFetch,
+    },
+    pageSize,
+    pageIndex,
+  });
 
-  return { users, total };
-}
-
-// Mapping the data from the API to the correct format
-async function useUsers() {
-  const usersFetch = await fetchDataUser(); //
-  const users = usersFetch.data;
-
-  return { users };
+  return { users: items, total: totalCount };
 }
 
 async function fetchSingleUser(id: string) {

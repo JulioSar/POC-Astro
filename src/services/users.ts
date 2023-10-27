@@ -3,14 +3,21 @@ import axios from "axios";
 import NotFoundException from "@/errors/not-found-exception-error";
 import NetworkError from "@/errors/network-error";
 import Users from "../../MOCK_DATA_PAGINATION.json";
+import { usePagination } from "@/hooks/usePagination";
 
 export async function mockFetchDataUsers(pageSize: number, pageIndex?: number) {
-  const startIndex = pageIndex ? pageIndex * pageSize : 0;
-  const endIndex = startIndex + pageSize;
-  const total = Math.ceil(Users.totalCount / pageSize);
+  // const response = await axios.get(`${import.meta.env.PUBLIC_API_URL}${import.meta.env.PUBLIC_API_USERS}?index=${pageIndex}&size=${pageSize}`)
+  const { items, totalCount } = await usePagination({
+    data: {
+      totalCount: Users.totalCount,
+      items: Users.items,
+    },
+    pageSize,
+    pageIndex,
+  });
   return {
-    items: Users.items.slice(startIndex, endIndex),
-    totalCount: total,
+    items,
+    totalCount,
   };
 }
 
