@@ -1,13 +1,10 @@
 import { UsersAdmin } from "../../src/components/UsersAdmin/UsersAdmin";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { ResizeObserverMock } from "../backoffice/resizeObserver";
 import { beforeEach, describe, expect, test } from "vitest";
 
 describe("UsersAdmin", () => {
   const resize = ResizeObserverMock;
-
-  const user = userEvent.setup();
 
   beforeEach(() => {
     render(<UsersAdmin></UsersAdmin>);

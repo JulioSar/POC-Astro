@@ -1,11 +1,3 @@
-import {
-  fetchDataUser,
-  updateUser,
-  addUserData,
-  deleteUserService,
-  fetchSingleUserData,
-  mockFetchDataUsers,
-} from "@/services/users";
 import type { User } from "../types";
 import { useEffect, useState } from "react";
 import userService from "@/services/users2";
@@ -13,22 +5,17 @@ import { usePagination } from "@/hooks/usePagination";
 
 async function mockFetchDataUsersHook(pageSize: number, pageIndex?: number) {
   const usersFetch = await userService.getAll();
+
   const { items, totalCount } = await usePagination({
     data: {
       totalCount: usersFetch.length,
       items: usersFetch,
     },
-    pageSize,
-    pageIndex,
+    pageSize: pageSize,
+    pageIndex: pageIndex,
   });
 
   return { users: items, total: totalCount };
-}
-
-async function fetchSingleUser(id: string) {
-  const userFetch = await fetchSingleUserData(id); // Add await once the API is ready
-  const user = userFetch.data;
-  return { user };
 }
 
 // Hook to get the users
@@ -60,8 +47,9 @@ export function useGetSingleUser(id: string) {
 
   useEffect(() => {
     async function fetchUserData() {
-      const { user } = await fetchSingleUser(id);
-      setUser(user);
+      const userFetch = await userService.getOne(id);
+      userFetch.profile_picture = undefined; // add the missing property with a default value
+      setUser(userFetch);
     }
 
     fetchUserData();
@@ -71,21 +59,21 @@ export function useGetSingleUser(id: string) {
 }
 export function useUpdateUser() {
   const addData = async (user: User) => {
-    await updateUser(user);
+    await userService.update(user, user.id);
   };
   return { addData };
 }
 
 export function useAddUser() {
   const addData = async (user: User) => {
-    await addUserData(user);
+    await userService.create(user, user.id);
   };
   return { addData };
 }
 
 export function useDeleteUser() {
   const deleteUser = async (id: string) => {
-    await deleteUserService(id);
+    await userService.delete(id);
   };
   return { deleteUser };
 }

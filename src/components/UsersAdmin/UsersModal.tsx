@@ -20,9 +20,7 @@ interface UsersModalProps {
 export default function UsersModal({ userProps, modalProps }: UsersModalProps) {
   const userId = userProps.userId;
   const isNewUser = userId === "";
-  console.log("isNewUser", isNewUser);
   const user = !isNewUser ? useGetSingleUser(userId) : new NewUser();
-
   const [editName, setEditName] = useState(isNewUser);
   const [tab, setTab] = useState("contact");
 
@@ -30,7 +28,6 @@ export default function UsersModal({ userProps, modalProps }: UsersModalProps) {
     modalProps.setOpenModal(undefined);
     userProps.setUserId("");
   }
-
   return (
     <Modal
       dismissible

@@ -1,6 +1,9 @@
-import type { paginateProps } from "@/types";
+import type { PaginateProps } from "@/types";
+import type { Entity } from "@/types";
 
-export async function usePagination(paginateInfo: paginateProps) {
+export async function usePagination<T extends Entity>(
+  paginateInfo: PaginateProps<T>
+) {
   const startIndex = paginateInfo.pageIndex
     ? paginateInfo.pageIndex * paginateInfo.pageSize
     : 0;

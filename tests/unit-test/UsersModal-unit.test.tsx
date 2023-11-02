@@ -1,101 +1,59 @@
-import axios from "axios";
-import { updateUser } from "@/services/users";
-import { UsersAdmin } from "../../src/components/UsersAdmin/UsersAdmin";
-import { render, waitFor, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import UsersModal from "../../src/components/UsersAdmin/UsersModal";
 import UserMother from "../backoffice/users/__mothers__/user.mother";
-import { ResizeObserverMock } from "../backoffice/resizeObserver";
 import { describe, expect, test, vi } from "vitest";
+import userService from "@/services/users2";
+import { ResizeObserverMock } from "../backoffice/resizeObserver";
 
 describe("User Modal", () => {
   const resize = ResizeObserverMock;
-  test("submit update user with success notification", async () => {
-    // given
-    const userClicked = UserMother.random();
-    axios.patch = vi.fn().mockResolvedValue({
-      data: userClicked,
-      status: 200,
-    });
-    // when
-    render(
-      <>
-        <UsersAdmin />
-        <UsersModal
-          user={userClicked}
-          modalVisible={"size"}
-          closedModal={() => {}}
-          setRefresh={() => {}}
-        ></UsersModal>
-      </>
-    );
-    userClicked.mail = "test@mail.com";
-    const updatedUser = await updateUser(userClicked);
 
-    // then
-    await waitFor(() => {
-      expect(axios.patch).toHaveBeenCalledWith(
-        `${import.meta.env.PUBLIC_API_URL}/user/${userClicked.id}`,
-        {
-          name: userClicked.name,
-          mail: userClicked.mail,
-        }
-      );
-      // expect(updatedUser.data).toStrictEqual(userClicked);
-    });
-  });
+  const user = UserMother.random();
+  const userProps = {
+    userId: user.id,
+    setUserId: vi.fn(),
+  };
+  const modalProps = {
+    openModal: "size",
+    setOpenModal: vi.fn(),
+  };
 
-  test("should render modal", () => {
+  test("should render modal", async () => {
     //  given
-    const newUser = UserMother.random();
+    const spy = vi.spyOn(userService, "getOne").mockResolvedValue(user);
+
     // when
-    render(
-      <UsersModal
-        user={newUser}
-        modalVisible={"size"}
-        closedModal={() => {}}
-        setRefresh={() => {}}
-      ></UsersModal>
-    );
-    const inputEmail = screen.getByPlaceholderText(
-      /email/i
-    ) as HTMLInputElement;
+
+    render(<UsersModal userProps={userProps} modalProps={modalProps} />);
+    const inputEmail = screen.getByText(/Edit name/i);
     // then
-    expect(inputEmail.value).toBe(newUser.mail);
+    expect(inputEmail).toBeDefined();
   });
 
-  test("should render user info", () => {
+  test("should render user info", async () => {
     // given
-    const userClicked = UserMother.random();
+    const spy = vi.spyOn(userService, "getOne").mockResolvedValue(user);
 
     // when
-    render(
-      <UsersModal
-        user={userClicked}
-        modalVisible={"size"}
-        closedModal={() => {}}
-        setRefresh={() => {}}
-      ></UsersModal>
-    );
+    render(<UsersModal userProps={userProps} modalProps={modalProps} />);
+
+    const profileBtn = screen.getByText(/profile/i);
+    await userEvent.click(profileBtn);
     const inputEmail = screen.getByPlaceholderText(
       /email/i
     ) as HTMLInputElement;
     // then
-    expect(inputEmail.value).toBe(userClicked.mail);
+
+    expect(inputEmail.value).toBe(user.mail);
   });
 
   test("should render modal's charts tab", async () => {
     // given
-    const userClicked = UserMother.random();
+    const spy = vi.spyOn(userService, "getOne").mockResolvedValue(user);
+
     // when
-    render(
-      <UsersModal
-        user={userClicked}
-        modalVisible={"size"}
-        closedModal={() => {}}
-        setRefresh={() => {}}
-      ></UsersModal>
-    );
+    render(<UsersModal userProps={userProps} modalProps={modalProps} />);
     const chartBtn = screen.getByText(/chart/i);
     await userEvent.click(chartBtn);
     // then
@@ -104,16 +62,10 @@ describe("User Modal", () => {
 
   test("should render modal's audits tab", async () => {
     // given
-    const userClicked = UserMother.random();
+    const spy = vi.spyOn(userService, "getOne").mockResolvedValue(user);
+
     // when
-    render(
-      <UsersModal
-        user={userClicked}
-        modalVisible={"size"}
-        closedModal={() => {}}
-        setRefresh={() => {}}
-      ></UsersModal>
-    );
+    render(<UsersModal userProps={userProps} modalProps={modalProps} />);
     const chartBtn = screen.getByText(/Audit/i);
     await userEvent.click(chartBtn);
     // then

@@ -1,13 +1,11 @@
-export interface User {
-  id: string;
+export interface User extends Entity {
   name: string;
   mail: string;
   status: boolean;
   profile_picture: string | undefined;
 }
 
-export interface News {
-  id: string;
+export interface News extends Entity {
   new_picture: string | undefined;
   title: string;
   content: string;
@@ -15,8 +13,7 @@ export interface News {
   category: string;
 }
 
-export interface ApplicationsInfo {
-  id: string;
+export interface ApplicationsInfo extends Entity {
   application_name: string;
   application_image: string;
   application_summary: string;
@@ -25,16 +22,23 @@ export interface ApplicationsInfo {
   application_link: string[];
 }
 
-export interface paginateProps {
+export interface PaginateProps<T extends typeof Entity> {
   data: {
+    items: T[];
     totalCount: number;
-    items: {
-      id: string;
-      mail: string;
-      name: string;
-      status: boolean;
-    }[];
   };
   pageSize: number;
   pageIndex?: number;
+}
+
+type Operator = "=" | "|" | "in" | "contains";
+
+export interface Filter<T extends Entity> {
+  property: keyof T;
+  operator: Operator;
+  value: string;
+}
+
+export interface Entity {
+  id: string;
 }

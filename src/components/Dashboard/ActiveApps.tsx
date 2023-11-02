@@ -11,7 +11,6 @@ export default function ActiveApps() {
     setNumToShow(Applications.length);
   };
   const appsToShow = Applications.slice(0, numToShow);
-  console.log(appsToShow);
   return (
     <>
       <section className="border rounded-md p-10 bg-gray-100">
