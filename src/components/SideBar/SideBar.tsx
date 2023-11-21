@@ -12,7 +12,7 @@ export default function SideBar({ children }: SideBarProps) {
   const name = "Julio Sarmiento";
 
   return (
-    <aside className=" bg-gray-100 h-full dark:bg-gray-900 border rounded-r-3xl">
+    <aside className=" bg-[#F5F5F5] h-full dark:bg-gray-900 ">
       {/* User Info */}
       <section className=" grid grid-rows-2 grid-flow-col gap-0 max-h-80 lg:grid-cols-[4rem_10rem] pt-10 ml-5">
         <Avatar className="row-span-2 w-14 h-14">

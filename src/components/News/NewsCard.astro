@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import { type News } from "@/types";
+
+interface Props{
+  news : News
+}
+
+const {news} = Astro.props
+---
+
+<article class="rounded-xl overflow-hidden shadow-lg hover:scale-90 transition duration-300 flex flex-col">
+  <Image
+    alt={`Article ${news.title} picture`}
+    class="w-full"
+    height="200"
+    src={news.new_picture ? news.new_picture : ""}
+    style={{
+      aspectRatio: "300/200",
+      objectFit: "cover",
+    }}
+    width="300"
+    transition:name={`news ${news?.id} picture`}
+  />
+  <section class="px-6 py-8 h-48">
+    <div class="font-bold text-xl mb-2">
+      <h3 class="text-xl" transition:name={`news ${news?.id} title`} >
+        {news.title}
+      </h3>
+    </div>
+    <span class="text-gray-700 text-sm line-clamp-3 pt-6" transition:name={`news ${news?.id} content`}
+    >
+      {news.content}
+    </span>
+  </section>
+  <section class="p-4 justify-self-end  bottom-24 ">
+    <a href={`/news/${news.id}`} 
+    transition:name={`news ${news?.id} box`}
+    >
+    Read More</a>
+  </section>
+</article>
+  

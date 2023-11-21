@@ -17,9 +17,9 @@ import {
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>;
-  totalPages: number;
-  indexProps: { index: number; setIndex: (index: number) => void };
-  setPageSize: (pageSize: number) => void;
+  totalPages?: number;
+  indexProps?: { index: number; setIndex: (index: number) => void };
+  setPageSize?: (pageSize: number) => void;
 }
 
 export function DataTablePagination<TData>({
@@ -28,6 +28,7 @@ export function DataTablePagination<TData>({
   indexProps,
   setPageSize,
 }: DataTablePaginationProps<TData>) {
+  const pages = totalPages ? totalPages : 0;
   return (
     <div className="flex flex-row-reverse items-center justify-between px-2 mt-5">
       <div className="flex items-center space-x-6 lg:space-x-8">
@@ -37,7 +38,7 @@ export function DataTablePagination<TData>({
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value: any) => {
               table.setPageSize(Number(value));
-              setPageSize(Number(value));
+              setPageSize && setPageSize(Number(value));
             }}
           >
             <SelectTrigger className="h-8 w-[70px]">
@@ -53,16 +54,25 @@ export function DataTablePagination<TData>({
           </Select>
         </div>
         <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          Page {indexProps.index + 1} of {totalPages}
+          {indexProps
+            ? `Page ${indexProps.index + 1} of ${totalPages}`
+            : `Page ${table.getState().pagination.pageIndex + 1} of ${" "}
+          ${table.getPageCount()}`}
         </div>
         <div className="flex items-center space-x-2">
           <Button
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
             onClick={() => {
-              indexProps.setIndex(0);
+              indexProps ? indexProps.setIndex(0) : table.setPageIndex(0);
             }}
-            disabled={indexProps.index === 0 ? true : false}
+            disabled={
+              indexProps
+                ? indexProps.index === 0
+                  ? true
+                  : false
+                : !table.getCanPreviousPage()
+            }
           >
             <span className="sr-only">Go to first page</span>
             <DoubleArrowLeftIcon className="h-4 w-4" />
@@ -71,9 +81,17 @@ export function DataTablePagination<TData>({
             variant="outline"
             className="h-8 w-8 p-0"
             onClick={() => {
-              indexProps.setIndex(indexProps.index - 1);
+              indexProps
+                ? indexProps.setIndex(indexProps.index - 1)
+                : table.previousPage();
             }}
-            disabled={indexProps.index === 0 ? true : false}
+            disabled={
+              indexProps
+                ? indexProps.index === 0
+                  ? true
+                  : false
+                : !table.getCanPreviousPage()
+            }
           >
             <span className="sr-only">Go to previous page</span>
             <ChevronLeftIcon className="h-4 w-4" />
@@ -82,9 +100,17 @@ export function DataTablePagination<TData>({
             variant="outline"
             className="h-8 w-8 p-0"
             onClick={() => {
-              indexProps.setIndex(indexProps.index + 1);
+              indexProps
+                ? indexProps.setIndex(indexProps.index + 1)
+                : table.nextPage();
             }}
-            disabled={indexProps.index === totalPages - 1 ? true : false}
+            disabled={
+              indexProps
+                ? indexProps.index === pages - 1
+                  ? true
+                  : false
+                : !table.getCanNextPage()
+            }
           >
             <span className="sr-only">Go to next page</span>
             <ChevronRightIcon className="h-4 w-4" />
@@ -93,9 +119,17 @@ export function DataTablePagination<TData>({
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
             onClick={() => {
-              indexProps.setIndex(totalPages - 1);
+              indexProps
+                ? indexProps.setIndex(pages - 1)
+                : table.setPageIndex(table.getPageCount() - 1);
             }}
-            disabled={indexProps.index === totalPages - 1 ? true : false}
+            disabled={
+              indexProps
+                ? indexProps.index === pages - 1
+                  ? true
+                  : false
+                : !table.getCanNextPage()
+            }
           >
             <span className="sr-only">Go to last page</span>
             <DoubleArrowRightIcon className="h-4 w-4" />

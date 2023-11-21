@@ -32,9 +32,9 @@ import { useState } from "react";
 interface DataTableProps<TData, TValue> {
   columns: Array<ColumnDef<TData, TValue>>;
   data: TData[];
-  totalPages: number;
-  indexProps: { index: number; setIndex: (index: number) => void };
-  setPageSize: (pageSize: number) => void;
+  totalPages?: number;
+  indexProps?: { index: number; setIndex: (index: number) => void };
+  setPageSize?: (pageSize: number) => void;
 }
 
 export function TableAdmin<TData, TValue>({
@@ -62,18 +62,18 @@ export function TableAdmin<TData, TValue>({
     },
   });
 
-  const [filtering, setFiltering] = useState("mail");
+  // const [filtering, setFiltering] = useState("mail");
 
   return (
     <div className="w-full pt-10">
-      <section className="grid grid-cols-4 gap-4">
+      {/* <section className="grid grid-cols-4 gap-4">
         <div className="pl-10">
           <h2 className="text-3xl">Users</h2>
           <p className="text-sm text-gray-500 p-1">
             {data ? data.length : 0} results found
           </p>
         </div>
-        <div className="col-span-2 col-end-5 flex items-center justify-end pr-10">
+         <div className="col-span-2 col-end-5 flex items-center justify-end pr-10">
           <Input
             placeholder="Filter emails..."
             value={
@@ -100,17 +100,17 @@ export function TableAdmin<TData, TValue>({
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </div>
-      </section>
+        </div> 
+      </section> */}
 
       <div className="rounded-md pt-6">
         <Table className="">
-          <TableHeader>
+          <TableHeader className="bg-[#B5B5B5] text-white">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className="">
+                    <TableHead key={header.id} className="text-white">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -157,6 +157,7 @@ export function TableAdmin<TData, TValue>({
         </Table>
       </div>
       {/* Pagination buttons */}
+
       <div className="p-4">
         <DataTablePagination
           table={table}

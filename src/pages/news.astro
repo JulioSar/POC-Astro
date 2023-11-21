@@ -1,0 +1,22 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import NewsCard from "@/components/News/NewsCard.astro"
+import NewsArticles from "../../MOCK_DATA_REGULAR_NEWS.json";
+import "../../app/globals.css";
+// import filterNews from "../components/scripts/filterNews"
+import type { News } from "@/types";
+
+
+---
+
+<Layout title="News">
+    <div class="flex flex-col gap-12 p-12 bg-white border rounded-l-3xl min-h-screen">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {NewsArticles.map((newsItem: News) => (
+                <NewsCard news={newsItem}/>
+            ))}
+        </div>
+    </div>
+</Layout>
+
+<!-- Search could be done with nanostores. Check astros website share state between astros components -->

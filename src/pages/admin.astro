@@ -1,9 +1,131 @@
 ---
-import { UsersAdmin } from "@/components/UsersAdmin/UsersAdmin";
-import "../../app/globals.css";
-import AdminLayout from "@/layouts/AdminLayout.astro";
+import Layout from "@/layouts/Layout.astro";
+import {AppConfigurationGroup, Applications, SsoFederation, ManagementUsers, LogUsers, PortalDataAudit, NewsInterest, PortalConfigurations, DocumentUpload} from "@/lib/icons"
+
 ---
 
-<AdminLayout title="POC.">
-  <UsersAdmin client:load />
-</AdminLayout>
+<Layout title="Admin">
+  <div class="flex flex-col gap-12 p-12 bg-white border rounded-l-3xl min-h-screen">
+    <section class="flex flex-col h-60 rounded-2xl bg-[#F0EDED] border-0">
+      <h3 class="pt-6 pl-6">Configurations</h3>
+      <div class="pl-6 pt-4 flex flex-row gap-6">
+        
+        <article class="bg-white w-56 h-36 border rounded-xl flex justify-center shadow-md cursor-pointer hover:scale-105 transition duration-300">
+          <a class="flex flex-col justify-center align-middle">
+            <div class="flex justify-center">
+              <Applications/>
+            </div>
+            <span class="pt-4 text-[#E87722]">Applications</span>        
+          </a>
+        </article>
+
+        <article class="bg-white w-56 h-36 border rounded-xl flex justify-center shadow-md cursor-pointer hover:scale-105 transition duration-300">
+          <a class="flex flex-col justify-center align-middle">
+            <div class="flex justify-center">
+              <AppConfigurationGroup/>
+            </div>
+
+            <span class="pt-4 text-[#E87722]">App Configuration Group</span>        
+          </a>
+        </article>
+
+        <article class="bg-white w-56 h-36 border rounded-xl flex justify-center shadow-md cursor-pointer hover:scale-105 transition duration-300">
+          <a class="flex flex-col justify-center align-middle">
+            <div class="flex justify-center">
+              <SsoFederation/>
+            </div>
+            <span class="pt-4 text-[#E87722]">SSO Federations</span>        
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="flex flex-col h-60 rounded-2xl bg-[#F0EDED] border-0">
+      <h3 class="pt-6 pl-6">Users</h3>
+      <div class="pl-6 pt-4 flex flex-row gap-6">
+        
+        <article class="bg-white w-56 h-36 border rounded-xl flex justify-center shadow-md cursor-pointer hover:scale-105 transition duration-300">
+          <a class="flex flex-col justify-center align-middle" transition:name="users management admin" href="/users-management">
+            <div class="flex justify-center">
+              <ManagementUsers/>
+            </div>
+            <span class="pt-4 text-[#E87722]">Users Management</span>        
+          </a>
+        </article>
+
+        <article class="bg-white w-56 h-36 border rounded-xl flex justify-center shadow-md cursor-pointer hover:scale-105 transition duration-300">
+          <a class="flex flex-col justify-center align-middle">
+            <div class="flex justify-center">
+              <LogUsers/>
+            </div>
+
+            <span class="pt-4 text-[#E87722]">User Management Log</span>        
+          </a>
+        </article>
+
+        <article class="bg-white w-56 h-36 border rounded-xl flex justify-center shadow-md cursor-pointer hover:scale-105 transition duration-300">
+          <a class="flex flex-col justify-center align-middle">
+            <div class="flex justify-center">
+              <PortalDataAudit/>
+            </div>
+            <span class="pt-4 text-[#E87722]">Portal Data Audit</span>        
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="flex flex-col h-60 rounded-2xl bg-[#F0EDED] border-0">
+      <h3 class="pt-6 pl-6">Interests / News</h3>
+      <div class="pl-6 pt-4 flex flex-row gap-6">
+        
+        <article class="bg-white w-56 h-36 border rounded-xl flex justify-center shadow-md cursor-pointer hover:scale-105 transition duration-300">
+          <a class="flex flex-col justify-center align-middle" transition:name="news and interests page" href="/news-interests-admin">
+            <div class="flex justify-center">
+              <NewsInterest/>
+            </div>
+            <span class="pt-4 text-[#E87722]">Interests / News</span>        
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="flex flex-col h-60 rounded-2xl bg-[#F0EDED] border-0 ">
+      <h3 class="pt-6 pl-6">Settings</h3>
+      <div class="pl-6 pt-4 flex flex-row gap-6">
+        
+        <article class="bg-white w-56 h-36 border rounded-xl flex justify-center shadow-md cursor-pointer hover:scale-105 transition duration-300">
+          <a class="flex flex-col justify-center align-middle">
+            <div class="flex justify-center">
+              <PortalConfigurations/>
+              
+            </div>
+            <span class="pt-4 text-[#E87722]">Portal Configurations</span>        
+          </a>
+        </article>
+
+        
+      </div>
+    </section>
+
+    <section class="flex flex-col h-60 rounded-2xl bg-[#F0EDED] border-0">
+      <h3 class="pt-6 pl-6">Tools</h3>
+      <div class="pl-6 pt-4 flex flex-row gap-6">
+        
+        <article class="bg-white w-56 h-36 border rounded-xl flex justify-center shadow-md cursor-pointer hover:scale-105 transition duration-300">
+          <a class="flex flex-col justify-center align-middle">
+            <div class="flex justify-center">
+              <DocumentUpload/>
+            </div>
+            <span class="pt-4 text-[#E87722]">Document Upload</span>        
+          </a>
+        </article>
+
+        
+      </div>
+    </section>
+
+    
+  </div>
+
+</Layout>

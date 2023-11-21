@@ -1,39 +1,40 @@
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import UnsuscribedApps from "../../../MOCK_DATA_APPS_UNSUSCRIBED.json";
-import { ScrollArea } from "../ui/scroll-area";
+import Search from "../ui/search";
+import AppCard from "./AppCard";
+import { useState } from "react";
 
 export default function UnactiveApps() {
-  return (
-    <div className="border rounded-md bg-slate-100 ">
-      <h1 className="text-2xl my-10 pl-10">Unsuscribed Apps</h1>
+  const [searchTerm, setSearchTerm] = useState("");
+  const [pagination, setPagination] = useState(4);
+  const searchProps = {
+    searchTerm: searchTerm,
+    setSearchTerm: setSearchTerm,
+  };
 
-      <ScrollArea className="h-96 w-full rounded-md p-10 ">
-        <div className="space-y-8">
-          {UnsuscribedApps.map((unsuscribedApp) => (
-            <div className="flex items-center" key={unsuscribedApp.id}>
-              <Avatar className="h-9 w-9">
-                <AvatarImage
-                  src={unsuscribedApp.application_image}
-                  alt="Application Logo"
-                />
-                <AvatarFallback>
-                  {unsuscribedApp.application_name
-                    .split(" ")
-                    .map((value) => value[0].toUpperCase())}
-                </AvatarFallback>
-              </Avatar>
-              <div className="ml-4 space-y-1">
-                <p className="text-sm font-medium leading-none">
-                  {unsuscribedApp.application_name}
-                </p>
-              </div>
-              <div className="ml-auto font-medium">
-                <button>More Info</button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </ScrollArea>
+  const filteredApps = UnsuscribedApps.filter((app) =>
+    app.application_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const showAllHandler = () => {
+    setPagination(filteredApps.length);
+  };
+
+  return (
+    <div className="">
+      <h1 className="text-2xl my-10 ">Apps</h1>
+
+      <Search searchProps={searchProps} />
+
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 mt-6 ">
+        {filteredApps.slice(0, pagination).map((unsuscribedApp) => (
+          <AppCard app={unsuscribedApp} key={unsuscribedApp.id} />
+        ))}
+      </div>
+      {pagination < filteredApps.length && (
+        <button className="text-sm mt-10" onClick={showAllHandler}>
+          Show All
+        </button>
+      )}
     </div>
   );
 }

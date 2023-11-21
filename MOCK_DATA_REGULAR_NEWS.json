@@ -2,82 +2,102 @@
   {
     "id": "d290f8b3-f97d-4736-8bfc-e39419c167y0",
 
-    "new_picture": "https://picsum.photos/400",
+    "new_picture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStrUKlDVOH9OTzrcVMnqO_DUbmqCJCf4D85UrI-ztVKoxaAVye818yvReOL4QsjJaqN0A&usqp=CAU",
     "title": "facilitate dot-com platforms",
     "content": "Phasellus in felis. Donec semper sapien a libero.",
-    "date": "1/3/2023",
-    "category": "Business Development"
+    "creation_date": "1/3/2023",
+    "category": "Business Development",
+    "type": "Standard",
+    "published": false
   },
   {
     "id": "d290f8b3-f97d-4736-8bfc-e39419c168a7",
-    "new_picture": "https://picsum.photos/400",
+    "new_picture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZrgPDGXCuNChpTYsHOxtqR4r-BLSGSX7_KqKbbKyRoWPAJowKEFw_Vg0YQP9BN7sPsxE&usqp=CAU",
     "title": "incentivize frictionless vortals",
     "content": "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.",
-    "date": "2/15/2023",
-    "category": "Engineering"
+    "creation_date": "2/15/2023",
+    "category": "Engineering",
+    "type": "Featured",
+    "published": true
   },
   {
     "id": "90d80732-02e5-48ca-a9d8-51f18ebae08f",
-    "new_picture": "https://picsum.photos/400",
+    "new_picture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_0vMrTJrpBj6a60HFehPHuxXzm4C-LfbVR9dF19fLMsFC8hQN_q-1_58WaMde_FMLWOA&usqp=CAU",
     "title": "deliver viral infomediaries",
     "content": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.",
-    "date": "9/30/2022",
-    "category": "Product Management"
+    "creation_date": "9/30/2022",
+    "category": "Product Management",
+    "type": "Standard",
+    "published": true
   },
   {
     "id": "742ba121-9741-47c6-b3aa-4bdd1b9b034e",
-    "new_picture": "https://picsum.photos/400",
+    "new_picture": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Fpopular-photos&psig=AOvVaw3QFFDKV4tMQWIs7sORTkNY&ust=1699982958438000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJDItaLAwYIDFQAAAAAdAAAAABAD",
     "title": "disintermediate revolutionary web services",
     "content": "Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst.",
-    "date": "8/21/2023",
-    "category": "Engineering"
+    "creation_date": "8/21/2023",
+    "category": "Engineering",
+    "type": "Featured",
+    "published": false
   },
   {
     "id": "deb1eca6-33e8-4feb-8fb6-3842fc5d6c16",
     "new_picture": "https://picsum.photos/400",
     "title": "benchmark out-of-the-box deliverables",
     "content": "In congue. Etiam justo.",
-    "date": "1/11/2023",
-    "category": "Services"
+    "creation_date": "1/11/2023",
+    "category": "Services",
+    "type": "Standard",
+    "published": true
   },
   {
     "id": "56c8add8-cee4-49c6-b515-20b92a90ba94",
     "new_picture": "https://picsum.photos/400",
     "title": "facilitate virtual systems",
     "content": "Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
-    "date": "3/14/2023",
-    "category": "Sales"
+    "creation_date": "3/14/2023",
+    "category": "Sales",
+    "type": "Standard",
+    "published": true
   },
   {
     "id": "f3fcf401-b211-4f8e-a795-3433f970fc63",
-    "new_picture": "https://picsum.photos/400",
+    "new_picture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCiIKP72hW5WKKOt0gTuRWDDaICLJL8CmIrbo0Z5LnDdp2HPFo244NWm7db5V_g1iX3c0&usqp=CAU",
     "title": "integrate customized bandwidth",
     "content": "In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla.",
-    "date": "11/10/2022",
-    "category": "Accounting"
+    "creation_date": "11/10/2022",
+    "category": "Accounting",
+    "type": "Standard",
+    "published": true
   },
   {
     "id": "86a6bc50-76e8-4dba-8b28-9085f3985e1f",
-    "new_picture": "https://picsum.photos/400",
+    "new_picture": "https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F9512007%2Fpexels-photo-9512007.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D1%26w%3D500&tbnid=SvNkkudvi91D0M&vet=12ahUKEwihiZWUwMGCAxWQiFwKHTXwDpkQMyhEegUIARCHAg..i&imgrefurl=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fbusiness%2F&docid=KGi16lbv32YVCM&w=500&h=333&q=pictures%20stock&ved=2ahUKEwihiZWUwMGCAxWQiFwKHTXwDpkQMyhEegUIARCHAg",
     "title": "orchestrate wireless models",
     "content": "In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.",
-    "date": "6/13/2023",
-    "category": "Engineering"
+    "creation_date": "6/13/2023",
+    "category": "Engineering",
+    "type": "Standard",
+    "published": true
   },
   {
     "id": "0cb9ce0e-7a17-4cec-9be9-9c0bd6863543",
-    "new_picture": "https://picsum.photos/400",
+    "new_picture": "https://www.santander.com/content/dam/santander-com/es/stories/cabecera/2023/-educaci%C3%B3n-financiera/im-storie-guia-para-principiantes-que-es-eso-de-invertir-en-bolsa-cuerpo.jpg.transform/rendition-sm/image.jpg",
     "title": "productize extensible platforms",
     "content": "Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim.",
-    "date": "12/24/2022",
-    "category": "Sales"
+    "creation_date": "12/24/2022",
+    "category": "Sales",
+    "type": "Standard",
+    "published": false
   },
   {
     "id": "532b8c59-cefa-45d2-a4e2-311636d33db0",
-    "new_picture": "https://picsum.photos/400",
+    "new_picture": "https://www.santander.com/content/dam/santander-com/es/stories/cabecera/2023/-educaci%C3%B3n-financiera/im-storie-guia-para-principiantes-que-es-eso-de-invertir-en-bolsa-cuerpo.jpg.transform/rendition-sm/image.jpg",
     "title": "unleash distributed portals",
     "content": "Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-    "date": "10/20/2022",
-    "category": "Legal"
+    "creation_date": "10/20/2022",
+    "category": "Legal",
+    "type": "Standard",
+    "published": false
   }
 ]

@@ -1,0 +1,39 @@
+---
+import {Badge} from "../../components/ui/badge"
+const {id} = Astro.params
+import "../../../app/globals.css";
+import NewsArticles from "../../../MOCK_DATA_REGULAR_NEWS.json";
+import Layout from "@/layouts/Layout.astro";
+
+const article = NewsArticles.find((artcile) => artcile.id === id)
+---
+<Layout title="News Article">
+  <div class="flex flex-col  bg-white border rounded-l-3xl min-h-screen" transition:name=`news ${id} box`>
+
+    <a class="p-10" href='/news/'>Back</a>
+    <div class="align-middle justify-center flex" >
+        <article class="mx-auto p-6 ">
+          <img
+            alt="News cover image"
+            class="aspect-video overflow-hidden rounded-2xl object-cover mb-6"
+            height="240"
+            src={article?.new_picture}
+            width="700"
+            transition:name=`news ${id} picture`
+          />
+          <div class="space-y-2 ">
+            <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl lg:leading-[3.5rem]" transition:name=`news ${id} title`
+            >
+              {article?.title}
+            </h1>
+            <Badge className="text-white bg-blue-500 rounded-xl " variant="secondary">
+              Tech
+            </Badge>
+          </div>
+          <p class="mt-6 w-[30rem]" transition:name=`news ${id} content`
+          >
+          {article?.content}</p> 
+        </article>
+      </div>
+  </div>
+</Layout>

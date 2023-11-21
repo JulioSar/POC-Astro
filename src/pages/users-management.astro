@@ -1,0 +1,12 @@
+---
+import { UsersAdmin } from "@/components/UsersAdmin/UsersAdmin";
+import "../../app/globals.css";
+import AdminLayout from "@/layouts/AdminLayout.astro";
+---
+
+<AdminLayout title="Admin">
+  <div transition:name="users management admin">
+    <UsersAdmin client:load />
+
+  </div>
+</AdminLayout>

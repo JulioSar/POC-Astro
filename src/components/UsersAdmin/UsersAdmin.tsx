@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useGetUsers, useDeleteUser } from "../../hooks/useUsers";
 import { TableAdmin } from "../Table/TableAdmin";
-import { columns } from "../Table/ColumnsTable";
+import { columns } from "./ColumnsTable";
 import UsersModal from "./UsersModal";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";

@@ -17,22 +17,22 @@ export default function NewsCarousel({ items }: { items: News[] }) {
       {items.map((item: News) => (
         <div
           key={item.id}
-          className="!flex flex-row items-center justify-middle gap-4"
+          className="!flex flex-row items-center justify-middle gap-12"
         >
-          <section className="basis-1/2">
+          <section className="">
             <img
               src={item.new_picture}
               alt={item.title}
-              className="h-auto w-[80%] rounded-md"
+              className="h-[250px] w-[800px] rounded-md "
             />
           </section>
-          <div className="basis-1/2 flex flex-col">
+          <div className="flex flex-col">
             <section>
-              <h1 className="text-4xl my-10">{item.title}</h1>
-              <p>{item.content}</p>
+              <h1 className="text-2xl my-10">{item.title}</h1>
+              <p className="text-sm">{item.content}</p>
             </section>
             <section className="mt-5 mb-10 ">
-              <span className="bg-blue-300 border rounded-md px-5 py-2 inline">
+              <span className="bg-blue-300 text-sm border rounded-md px-5 py-2 inline">
                 {item.category}
               </span>
             </section>

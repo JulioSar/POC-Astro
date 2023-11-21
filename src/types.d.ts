@@ -9,8 +9,10 @@ export interface News extends Entity {
   new_picture: string | undefined;
   title: string;
   content: string;
-  date: string;
+  creation_date: string;
   category: string;
+  type: string;
+  published: boolean;
 }
 
 export interface ApplicationsInfo extends Entity {
@@ -20,6 +22,7 @@ export interface ApplicationsInfo extends Entity {
   application_contact: string;
   application_contact_email: string;
   application_link: string[];
+  active: boolean;
 }
 
 export interface PaginateProps<T extends typeof Entity> {
@@ -41,4 +44,12 @@ export interface Filter<T extends Entity> {
 
 export interface Entity {
   id: string;
+}
+
+export interface Interest extends Entity {
+  name: string;
+  category: {
+    name: string;
+    parent: null | string;
+  };
 }
