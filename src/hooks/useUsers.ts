@@ -1,9 +1,9 @@
 import type { User } from "../types";
 import { useEffect, useState } from "react";
-import userService from "@/services/users2";
+import userService from "@/services/users";
 import { usePagination } from "@/hooks/usePagination";
 
-async function mockFetchDataUsersHook(pageSize: number, pageIndex?: number) {
+async function FetchDataUsersHook(pageSize: number, pageIndex?: number) {
   const usersFetch = await userService.getAll();
 
   const { items, totalCount } = await usePagination({
@@ -24,10 +24,7 @@ export function useGetUsers(pageSize: number, pageIndex?: number) {
   const [total, setTotal] = useState<number>(0);
   useEffect(() => {
     async function fetchUsers() {
-      const { users, total } = await mockFetchDataUsersHook(
-        pageSize,
-        pageIndex
-      );
+      const { users, total } = await FetchDataUsersHook(pageSize, pageIndex);
       const formattedUsers = users.map((user) => ({
         ...user,
         profile_picture: undefined, // add the missing property with a default value

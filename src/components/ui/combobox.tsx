@@ -19,12 +19,14 @@ import {
 export function Combobox({
   options,
   setAction,
+  selectedOption,
 }: {
   options: any[];
   setAction: (value: string) => void;
+  selectedOption: string;
 }) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState(selectedOption);
 
   return (
     <div className="flex flex-col gap-6">
@@ -34,7 +36,7 @@ export function Combobox({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-[200px] justify-between"
+            className="w-[200px] justify-between text-[#757D8A]"
           >
             {value
               ? options.find((option: any) => option.value === value)?.label

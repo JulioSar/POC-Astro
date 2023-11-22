@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import UsersModal from "../../src/components/UsersAdmin/UsersModal";
 import UserMother from "../backoffice/users/__mothers__/user.mother";
 import { describe, expect, test, vi } from "vitest";
-import userService from "@/services/users2";
+import userService from "@/services/users";
 import { ResizeObserverMock } from "../backoffice/resizeObserver";
 
 describe("User Modal", () => {

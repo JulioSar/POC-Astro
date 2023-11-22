@@ -12,7 +12,7 @@ export default function NewsInterestsActions() {
   const [clickId, setClickId] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [openModal, setOpenModal] = useState<string | undefined>();
-  const [sectionActive, setSectionActive] = useState("Interests");
+  const [sectionActive, setSectionActive] = useState<string>("interests");
   const [tableData, setTableData] = useState(news);
   const [isNewItem, setIsNewItem] = useState(false);
 
@@ -21,7 +21,6 @@ export default function NewsInterestsActions() {
     setClickId,
     sectionActive,
     isNewItem,
-    setIsNewItem,
   };
   const modalProps = { openModal, setOpenModal };
 
@@ -40,13 +39,10 @@ export default function NewsInterestsActions() {
     "bg-[#999999] rounded-3xl text-white transition duration-300";
 
   useEffect(() => {
-    if (sectionActive === "Interests") {
+    if (sectionActive === "interests") {
       setTableData(news);
-    } else if (sectionActive === "News") {
+    } else if (sectionActive === "news") {
       setTableData(news2);
-    } else if (sectionActive === "Regulations") {
-      //setTableData();
-      console.log("Regulations");
     } else {
       console.log("ERROR"); // Throw Error
     }
@@ -60,6 +56,8 @@ export default function NewsInterestsActions() {
   const handleEditClick = (id: string) => {
     setClickId(id);
     setOpenModal("size");
+    setIsNewItem(false);
+    console.log(id);
   };
 
   const handleDeleteClick = async (id: string) => {
@@ -94,25 +92,17 @@ export default function NewsInterestsActions() {
           <section className="flex flex-row  bg-[#f4f4f4] rounded-xl text-[#D9D9D9] h-8">
             <button
               className={`${
-                sectionActive === "Interests" && isSectionActive
+                sectionActive === "interests" && isSectionActive
               } px-6 `}
-              onClick={() => setSectionActive("Interests")}
+              onClick={() => setSectionActive("interests")}
             >
               Interests
             </button>
             <button
-              className={`${sectionActive === "News" && isSectionActive} px-6 `}
-              onClick={() => setSectionActive("News")}
+              className={`${sectionActive === "news" && isSectionActive} px-6 `}
+              onClick={() => setSectionActive("news")}
             >
               News
-            </button>
-            <button
-              className={`${
-                sectionActive === "Regulations" && isSectionActive
-              } px-6`}
-              onClick={() => setSectionActive("Regulations")}
-            >
-              Regulations
             </button>
           </section>
 

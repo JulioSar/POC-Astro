@@ -123,50 +123,48 @@ export const news: News[] = [
 export const news2: News[] = [
   {
     id: "f3fcf401-b211-4f8e-a795-3433f90ofc63",
-    new_picture:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCiIKP72hW5WKKOt0gTuRWDDaICLJL8CmIrbo0Z5LnDdp2HPFo244NWm7db5V_g1iX3c0&usqp=CAU",
-    title: "NEWS",
-    content:
-      "In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla.",
-    creation_date: "11/10/2022",
-    category: "Accounting",
-    type: "Standard",
+    type: "standard",
+    title: "Test new",
+    content: "<b>Test new</b>",
+    news_picture: "lo estoy intentando",
+    creation_date: undefined,
+    category: ["f8ffc788-09ea-4af2-8f72-342a62ce0740"],
     published: true,
   },
   {
     id: "86a6bc50-76e8-4dba-8b28-9085f394re1f",
-    new_picture:
-      "https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F9512007%2Fpexels-photo-9512007.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D1%26w%3D500&tbnid=SvNkkudvi91D0M&vet=12ahUKEwihiZWUwMGCAxWQiFwKHTXwDpkQMyhEegUIARCHAg..i&imgrefurl=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fbusiness%2F&docid=KGi16lbv32YVCM&w=500&h=333&q=pictures%20stock&ved=2ahUKEwihiZWUwMGCAxWQiFwKHTXwDpkQMyhEegUIARCHAg",
-    title: "THIS IS NEWS",
-    content:
-      "In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.",
-    creation_date: "6/13/2023",
-    category: "Engineering",
-    type: "Standard",
-    published: true,
+    type: "featured",
+    title: "Test new",
+    content: "<b>Test new</b>",
+    news_picture: "lo estoy intentando",
+    creation_date: undefined,
+    category: [
+      "ecd62a8d-ef51-4811-a993-193f09faef45",
+      "6b9f235-17d8-48e2-8eeb-d223105c6048",
+    ],
+    published: false,
   },
   {
     id: "0cb9ce0e-7a17-4cec-9be9-9c0bd6863565",
-    new_picture:
-      "https://www.santander.com/content/dam/santander-com/es/stories/cabecera/2023/-educaci%C3%B3n-financiera/im-storie-guia-para-principiantes-que-es-eso-de-invertir-en-bolsa-cuerpo.jpg.transform/rendition-sm/image.jpg",
-    title: "producdsfadsfasdfsdfdsfsdensible platforms",
-    content:
-      "Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim.",
-    creation_date: "12/24/2022",
-    category: "Sales",
-    type: "Standard",
+    type: "standard",
+    title: "Test new",
+    content: "<b>Test new</b>",
+    news_picture: "lo estoy intentando",
+    creation_date: undefined,
+    category: [
+      "de51f6f2-7bf1-4285-a665-453bf6d8bd91",
+      "f86a6c4f-f4e0-4b95-8436-d32bb6d891c5",
+    ],
     published: false,
   },
   {
     id: "532b8c59-cefa-45d2-a4e2-311636d3fvb0",
-    new_picture:
-      "https://www.santander.com/content/dam/santander-com/es/stories/cabecera/2023/-educaci%C3%B3n-financiera/im-storie-guia-para-principiantes-que-es-eso-de-invertir-en-bolsa-cuerpo.jpg.transform/rendition-sm/image.jpg",
-    title: "u dsfadsfasdfads rtals",
-    content:
-      "Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-    creation_date: "10/20/2022",
-    category: "Legal",
-    type: "Standard",
+    type: "standard",
+    title: "Test new",
+    content: "<b>Test new</b>",
+    news_picture: "lo estoy intentando",
+    creation_date: undefined,
+    category: ["1", "2"],
     published: false,
   },
 ];

@@ -1,125 +1,67 @@
-import type { User } from "../types";
-import axios from "axios";
-import NotFoundException from "@/errors/not-found-exception-error";
-import NetworkError from "@/errors/network-error";
-import Users from "../../MOCK_DATA_PAGINATION.json";
-import { usePagination } from "@/hooks/usePagination";
+import type { Entity, Filter, User } from "@/types";
+import axios, { type AxiosResponse } from "axios";
 
-export async function mockFetchDataUsers(pageSize: number, pageIndex?: number) {
-  // const response = await axios.get(`${import.meta.env.PUBLIC_API_URL}${import.meta.env.PUBLIC_API_USERS}?index=${pageIndex}&size=${pageSize}`)
-  const { items, totalCount } = await usePagination({
-    data: {
-      totalCount: Users.totalCount,
-      items: Users.items,
-    },
-    pageSize,
-    pageIndex,
-  });
-  return {
-    items,
-    totalCount,
-  };
-}
+export abstract class GenericService<T extends Entity> {
+  protected abstract url: string;
 
-export async function fetchDataUser() {
-  try {
-    const response = await axios.get(`${import.meta.env.PUBLIC_API_URL}/user`);
-    return response.data;
-  } catch (error) {
-    return [];
+  public async getAll(): Promise<T[]> {
+    const response: AxiosResponse = await axios.get(this.url);
+    const data = response.data.data;
+    return data;
   }
-}
 
-export async function fetchSingleUserData(id: string) {
-  try {
-    const response = await axios.get(
-      `${import.meta.env.PUBLIC_API_URL}/user/${id}`
+  public async getOne(id: string): Promise<T> {
+    const response: AxiosResponse = await axios.get(`${this.url}/${id}`, {
+      params: { id },
+    });
+    return response.data.data;
+  }
+
+  public async getPage(index: number, size: number, filters?: Filter<T>[]) {
+    const pageString = this.getIndexQuery(index, size);
+    const filterString = this.parseFilters(filters ?? []);
+
+    return await axios.get(
+      `${this.url}?${pageString ?? ""}&${filterString ?? ""}`
     );
-    return response.data;
-  } catch (error: unknown) {
-    if (axios.isAxiosError(error)) {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        if (error.response.status == 404) {
-          throw new NotFoundException(
-            `The user with id ${id} has not been found`
-          );
-        } else {
-          throw new Error();
-        }
-      } else if (error.request) {
-        // The request was made but no response was received
-        throw new NetworkError("Network error");
-      }
-    } else {
-      throw new Error();
-    }
+  }
+
+  public async create(entity: T, id: string): Promise<void> {
+    await axios.put(`${this.url}/${id}`, entity);
+  }
+
+  public async update(entity: T, id: string): Promise<void> {
+    await axios.patch(`${this.url}/${id}`, entity);
+  }
+
+  public async delete(id: string): Promise<void> {
+    await axios.delete(`${this.url}/${id}`, { params: { id } });
+  }
+
+  protected getIndexQuery(index: number, size: number): string {
+    return `index=${index}&size=${size}`;
+  }
+
+  protected parseFilters(filters: Filter<T>[]): string {
+    const query = "";
+    filters.map((filter) => {
+      query.concat(
+        `${filter.property.toString()}:${filter.operator.toString()}:${
+          filter.value
+        }`
+      );
+    });
+
+    return query;
   }
 }
 
-export async function addUserData(user: User) {
-  await axios
-    .put(`${import.meta.env.PUBLIC_API_URL}/user/${user.id}`, {
-      name: user.name,
-      mail: user.mail,
-      status: user.status,
-    })
-    .catch(function (error) {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        if (error.response.status == 404) {
-          throw new NotFoundException(
-            `The user with id ${user.id} has not been found`
-          );
-        } else {
-          throw new Error();
-        }
-      } else if (error.request) {
-        // The request was made but no response was received
-        throw new NetworkError("Network error");
-      }
-    });
+export class UserService extends GenericService<User> {
+  constructor(protected url: string) {
+    super();
+    this.url = url;
+  }
 }
 
-export async function updateUser(user: User) {
-  await axios
-    .patch(`${import.meta.env.PUBLIC_API_URL}/user/${user.id}`, {
-      name: user.name,
-      mail: user.mail,
-    })
-    .catch(function (error) {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        if (error.response.status == 404) {
-          throw new NotFoundException(
-            `The user with id ${user.id} has not been found`
-          );
-        } else {
-          throw new Error();
-        }
-      } else if (error.request) {
-        // The request was made but no response was received
-        throw new NetworkError("Network error");
-      }
-    });
-}
-
-export async function deleteUserService(id: string) {
-  await axios
-    .delete(`${import.meta.env.PUBLIC_API_URL}/user/${id}`)
-    .catch(function (error) {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        if (error.response.status == 404) {
-          throw new NotFoundException(
-            `The user with id ${id} has not been found`
-          );
-        } else {
-          throw new Error();
-        }
-      } else if (error.request) {
-        // The request was made but no response was received
-        throw new NetworkError("Network error");
-      }
-    });
-}
+const userService = new UserService(`${import.meta.env.PUBLIC_API_URL}/user`);
+export default userService;

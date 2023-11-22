@@ -15,13 +15,16 @@ import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
 import { TRANSFORMERS } from "@lexical/markdown";
+import { useState, useEffect } from "react";
+import { $generateHtmlFromNodes } from "@lexical/html";
 
 import ListMaxIndentLevelPlugin from "./plugins/ListMaxIndentLevelPlugin";
 import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin";
 import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
 function Placeholder() {
-  return <div className="editor-placeholder">Enter some rich text...</div>;
+  return <div className="editor-placeholder">Enter description...</div>;
 }
 
 const editorConfig = {
@@ -47,7 +50,26 @@ const editorConfig = {
   ],
 };
 
-export default function Editor() {
+function OnChangePlugin({ onChange }) {
+  const [editor] = useLexicalComposerContext();
+
+  useEffect(() => {
+    return editor.registerUpdateListener(({ editorState }) => {
+      onChange(editorState, editor);
+    });
+  }, [editor, onChange]);
+}
+
+export default function Editor({ editorProps }) {
+  // const [editorState, setEditorState] = useState();
+
+  function onChange(editorState, editor) {
+    editor.update(() => {
+      const htmlString = $generateHtmlFromNodes(editor, null);
+      editorProps.setEditorState(htmlString);
+    });
+  }
+
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div className="editor-container">
@@ -68,6 +90,7 @@ export default function Editor() {
           <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
         </div>
       </div>
+      <OnChangePlugin onChange={onChange} />
     </LexicalComposer>
   );
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "flowbite-react";
 import SelectNew from "./ModalScenarios/SelectNew";
 import NewsModal from "./ModalScenarios/NewsModal";
@@ -9,7 +9,6 @@ interface NewsInterestsModalProps {
     setClickId: (value: string) => void;
     sectionActive: string;
     isNewItem: boolean;
-    setIsNewItem: (value: boolean) => void;
   };
   modalProps: {
     openModal: string | undefined;
@@ -22,13 +21,23 @@ export default function NewsInterestsModal({
   modalProps,
 }: NewsInterestsModalProps) {
   const infoId = infoProps.clickId;
-  const [newItemOption, setNewItemOption] = useState<string>();
+
+  const [newItemOption, setNewItemOption] = useState<boolean>(
+    infoProps.isNewItem
+  );
+  const [sectionActive, setSectionActive] = useState<string>(
+    infoProps.sectionActive
+  );
+
+  const optionsSelect = {
+    setNewItemOption,
+    setSectionActive,
+  };
 
   function handleModalClose() {
     modalProps.setOpenModal(undefined);
     infoProps.setClickId("");
   }
-
   return (
     <Modal
       dismissible
@@ -38,14 +47,14 @@ export default function NewsInterestsModal({
     >
       <section className=" flex flex-col min-h-[35rem]">
         <Modal.Header className=" border-b-0">
-          {infoProps.isNewItem && ``}
+          {newItemOption && ``}
         </Modal.Header>
 
         <Modal.Body className="flex flex-col justify-center align-middle ">
-          {newItemOption === undefined ? (
-            <SelectNew setNewItemOption={setNewItemOption} />
-          ) : newItemOption === "news" ? (
-            <NewsModal />
+          {newItemOption ? (
+            <SelectNew optionsSelect={optionsSelect} />
+          ) : sectionActive === "news" ? (
+            <NewsModal id={infoId} />
           ) : (
             <h1>Hello</h1>
           )}

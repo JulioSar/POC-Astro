@@ -6,11 +6,11 @@ export interface User extends Entity {
 }
 
 export interface News extends Entity {
-  new_picture: string | undefined;
+  news_picture: string | undefined;
   title: string;
   content: string;
-  creation_date: string;
-  category: string;
+  creation_date: Date | undefined;
+  category: string[];
   type: string;
   published: boolean;
 }
@@ -52,4 +52,15 @@ export interface Interest extends Entity {
     name: string;
     parent: null | string;
   };
+}
+
+export interface CreateInterest extends Entity {
+  name: string;
+  categoryName: string;
+  parentCategoryName: string;
+}
+
+export interface CategoryInterest {
+  name: string;
+  parent: string;
 }

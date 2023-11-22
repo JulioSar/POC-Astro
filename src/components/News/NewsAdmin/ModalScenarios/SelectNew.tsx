@@ -1,9 +1,14 @@
 import { Combobox } from "@/components/ui/combobox";
 
+interface NewItemOptions {
+  setNewItemOption: (value: boolean) => void;
+  setSectionActive: (value: string) => void;
+}
+
 export default function SelectNew({
-  setNewItemOption,
+  optionsSelect,
 }: {
-  setNewItemOption: (value: string) => void;
+  optionsSelect: NewItemOptions;
 }) {
   const options = [
     {
@@ -14,11 +19,12 @@ export default function SelectNew({
       value: "interest",
       label: "Interest",
     },
-    {
-      value: "regulation",
-      label: "Regulation",
-    },
   ];
+
+  const handleSelection = (value: string) => {
+    optionsSelect.setNewItemOption(false);
+    optionsSelect.setSectionActive(value);
+  };
   return (
     <>
       <section className="flex justify-center align-middle py-10">
@@ -28,10 +34,10 @@ export default function SelectNew({
         <article className="flex justify-center align-middle">
           <Combobox
             options={options}
-            setAction={(value: string) => setNewItemOption(value)}
+            setAction={handleSelection}
+            selectedOption=""
           />
         </article>
-        <button>Next</button>
       </section>
     </>
   );
